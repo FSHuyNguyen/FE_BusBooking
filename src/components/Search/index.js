@@ -1,121 +1,201 @@
-import React, { useRef, useState } from 'react';
-import images from '~/assets/img';
+import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-date-picker';
 import HandlessTippy from '@tippyjs/react/headless';
+import Button from '~/components/Button';
+import { useNavigate } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Image from '../Image';
+import axios from 'axios';
 
 const Search = () => {
     const dateRef = useRef(null);
     const [dateFrom, setDateFrom] = useState(new Date());
     const [dateTo, setDateTo] = useState(new Date());
-    const [showResult, setShowResult] = useState(false);
+    const [showResultFrom, setShowResultFrom] = useState(false);
+    const [showResultTo, setShowResultTo] = useState(false);
+    const [inputFrom, setInputFrom] = useState('');
+    const [inputTo, setInputTo] = useState('');
+    const rotateRef = useRef(null);
+    const navigate = useNavigate();
+
+    const [dataSearch, setDataSearch] = useState([]);
+    useEffect(() => {
+        const fetchApiDeal = async () => {
+            const res = await axios.get(process.env.REACT_APP_BASE_URL + '/station');
+            setDataSearch(res.data.station);
+        };
+        fetchApiDeal();
+    }, []);
+
+    const [roundTrip, setRoundTrip] = useState(false);
+
+    const handleChooseFrom = (value) => {
+        setInputFrom(value);
+    };
+
+    const handleChooseTo = (value) => {
+        setInputTo(value);
+    };
+
+    const handleRoundTrip = () => {
+        setRoundTrip((state) => !state);
+    };
+
+    const handleChangeRoundTrip = () => {
+        if (!inputFrom || !inputTo) return;
+        rotateRef.current.classList.toggle('rotate');
+        setInputFrom(inputTo);
+        setInputTo(inputFrom);
+    };
+
+    const handleSubmit = () => {
+        inputFrom && inputTo
+            ? navigate('/search')
+            : Notify.warning('Vui lòng nhập điểm đi và điểm đến!', {
+                  zindex: `999999`,
+                  useIcon: false,
+                  cssAnimationStyle: 'from-right',
+                  cssAnimationDuration: 600,
+                  distance: '30px',
+                  showOnlyTheLastOne: true,
+                  clickToClose: true,
+                  fontSize: '16px',
+              });
+    };
+
     return (
         <div className="search__middle">
-            <div className="grid__row">
-                <div className="grid__column-5 grid__column-md-12 search__group">
-                    <HandlessTippy
-                        visible={showResult}
-                        interactive
-                        render={(attrs) => (
-                            <div className="box" tabIndex="-1" {...attrs}>
-                                My tippy box
-                            </div>
-                        )}
-                        onClickOutside={() => setShowResult(false)}
-                    >
-                        <div className="search__input">
-                            <label className="search__input__label" htmlFor="">
-                                Từ
-                            </label>
-                            <input
-                                id="inputFrom"
-                                className="search-input__field"
-                                type="input"
-                                placeholder="Từ nơi nào đến?"
-                                value=""
-                                onChange={(e) => e.preventDefault()}
-                                onFocus={() => setShowResult(true)}
-                            />
-                            {/* <div className="search-input__hint search-input__hint--hidden" id="hintDepflight">
-                            <div className="search-input__hint-airpost">
-                                <h4>Sân bay nội địa</h4>
-                                <div className="grid__row search-input__hint-list">
-                                    <div className="grid__column-2-4">
-                                        <h4 className="search-input__hint-area">Miền Bắc</h4>
-                                        <ul>
-                                            <li className="search-input__hint-place">Hà Nội (HAN)</li>
-                                            <li className="search-input__hint-place">Hải Phòng (HPH)</li>
-                                            <li className="search-input__hint-place">Thanh Hóa (THD)</li>
-                                        </ul>
-                                    </div>
-                                    <div className="grid__column-2-4">
-                                        <h4 className="search-input__hint-area">Miền Trung</h4>
-                                        <ul>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                        </ul>
-                                    </div>
-                                    <div className="grid__column-2-4">
-                                        <h4 className="search-input__hint-area">Miền Nam</h4>
-                                        <ul>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                        </ul>
-                                    </div>
+            <div className="roundtrip-checkbox-container">
+                <input
+                    id="one-way"
+                    type="radio"
+                    onClick={handleRoundTrip}
+                    className={`${!roundTrip ? 'checked' : ''}`}
+                />
+                <label htmlFor="one-way" className="one-way-label">
+                    Một chiều
+                </label>
+                <input
+                    id="round-trip"
+                    type="radio"
+                    onClick={handleRoundTrip}
+                    className={`${roundTrip ? 'checked' : ''}`}
+                />
+                <label htmlFor="round-trip" className="round-trip-label">
+                    Khứ Hồi
+                </label>
+            </div>
+            <div className="select__box-search">
+                <div className="search__group">
+                    <div className="">
+                        <HandlessTippy
+                            visible={showResultFrom}
+                            interactive
+                            placement="bottom-start"
+                            zIndex="9999999"
+                            render={(attrs) => (
+                                <div className="data_list_search" tabIndex={'-1'} {...attrs}>
+                                    <ul className="place-list">
+                                        {dataSearch &&
+                                            dataSearch.map(
+                                                (item) =>
+                                                    item.point !== inputTo && (
+                                                        <li className="place-list-item" key={item.id}>
+                                                            <button
+                                                                onClick={() => handleChooseFrom(item.point)}
+                                                                className="list-item"
+                                                            >
+                                                                {item.point}
+                                                            </button>
+                                                        </li>
+                                                    ),
+                                            )}
+                                    </ul>
                                 </div>
+                            )}
+                            onClickOutside={() => setShowResultFrom(false)}
+                        >
+                            <div className="search__input">
+                                <label className="search__input__label" htmlFor="">
+                                    Từ
+                                </label>
+                                <input
+                                    id="inputFrom"
+                                    className="search-input__field"
+                                    type="input"
+                                    placeholder="Từ nơi nào đến"
+                                    value={inputFrom}
+                                    onChange={(e) => handleChooseFrom(e.target.value)}
+                                    onFocus={() => setShowResultFrom(true)}
+                                />
                             </div>
-                        </div> */}
-                        </div>
-                    </HandlessTippy>
-                    <img className="search__double-arrow" id="double-arrow" src={images.doubleArrowV2} alt="" />
-                    <div className="search__input">
-                        <label className="search__input__label" htmlFor="">
-                            Đến
-                        </label>
-                        <input
-                            id="inputTo"
-                            className="search-input__field"
-                            type="input"
-                            placeholder="Đến nơi nào?"
-                            value=""
-                            onChange={(e) => e.preventDefault()}
-                        />
-                        <div className="search-input__hint search-input__hint--hidden" id="hintArrflight">
-                            <div className="search-input__hint-airpost">
-                                <h4>Sân bay nội địa</h4>
-                                <div className="grid__row search-input__hint-list">
-                                    <div className="grid__column-2-4">
-                                        <h4 className="search-input__hint-area">Miền Bắc</h4>
-                                        <ul>
-                                            <li className="search-input__hint-place">Hà Nội (HAN)</li>
-                                            <li className="search-input__hint-place">Hải Phòng (HPH)</li>
-                                            <li className="search-input__hint-place">Thanh Hóa (THD)</li>
+                        </HandlessTippy>
+                    </div>
+                    <Image
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAACTUExURf///+9RHN7k6Pj5+t3j6Pz9/f///97i6Obp7eLm6t7k597i6Ort8Ovr6/v8/P7+/vr7/N3p6e3v8fP19+Pj6uzv8d7j597j5/f4+d7j5+Hl6t3j6N7j6N/j6PSGY+rt7+Tk5PBWI/BTH/epkfiqkvirk/iwmviynP3p4t/j6d3i6P3p4/BVIvBXJP3n4PeokEdwTMlG7ekAAAAxdFJOU///f//z/wGq//5S6P8M////Fv//I/9y2f+l/7/Tgv//Cf//////////g/L//////wDIpbVhAAABPklEQVQ4y5WV15qDIBCFR8Dee09i6ibbfP+nW7L7xYyuKDlXlF8HhuEA/UhJVtY5Y3ldZsl4BlA7bJsqjYvA94MiTqumDWdBl7CIAhKNGHH/g5bteDCR59jWBNSISWFG1CQaBne6ocKsVEPfPUFN34JQW10bQGLAggzyAC1TXQJV0/oDXZvCoqjt/oLEgRU55A6GzFsDPRZy8BrBqqKWg41ghe94lU0PSSX4y+cBdaoEslQAfiiITDMo4ymxUR46D2NxCXUhBi/DWFFDHghC75XTsxPkwHw8+/Zsdkc07jO4YfDYzX7Dwdso9EnZC9bBQ6PNXIZdbKYg3wxKz1kM8vTghB+EoXnCR0f43QlAfoTjovgSlC4vir6VLTPpwpW+CvKXS/q6yhuAvKVIm5S87ckb6QvWfDf7q5TZrzwfP7TlSKhNtCqwAAAAAElFTkSuQmCC"
+                        className="change-img center"
+                        onClick={handleChangeRoundTrip}
+                        alt="change"
+                        ref={rotateRef}
+                    ></Image>
+                    <div className="">
+                        <HandlessTippy
+                            visible={showResultTo}
+                            interactive
+                            placement="bottom-start"
+                            zIndex="9999999"
+                            offset={[-238, 10]}
+                            render={(attrs) =>
+                                inputFrom ? (
+                                    <div className="data_list_search" tabIndex={'-1'} {...attrs}>
+                                        <ul className="place-list">
+                                            {dataSearch &&
+                                                dataSearch.map(
+                                                    (data) =>
+                                                        data.point !== inputFrom && (
+                                                            <li className="place-list-item" key={data.id}>
+                                                                <button
+                                                                    onClick={() => handleChooseTo(data.point)}
+                                                                    className="list-item"
+                                                                >
+                                                                    {data.point}
+                                                                </button>
+                                                            </li>
+                                                        ),
+                                                )}
                                         </ul>
                                     </div>
-                                    <div className="grid__column-2-4">
-                                        <h4 className="search-input__hint-area">Miền Trung</h4>
-                                        <ul>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
+                                ) : (
+                                    <div className="data_list_select right">
+                                        <ul className="place-list">
+                                            <li className="place-list-item">
+                                                <div className="please-select">Vui lòng chọn điểm đi trước</div>
+                                            </li>
                                         </ul>
                                     </div>
-                                    <div className="grid__column-2-4">
-                                        <h4 className="search-input__hint-area">Miền Nam</h4>
-                                        <ul>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                            <li className="search-input__hint-place">Hà nội</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                )
+                            }
+                            onClickOutside={() => setShowResultTo(false)}
+                        >
+                            <div className="search__input">
+                                <label className="search__input__label" htmlFor="">
+                                    Đến
+                                </label>
+                                <input
+                                    id="inputTo"
+                                    className="search-input__field"
+                                    type="input"
+                                    placeholder="Đến nơi nào"
+                                    value={inputTo}
+                                    onChange={(e) => handleChooseTo(e.target.value)}
+                                    onFocus={() => setShowResultTo(true)}
+                                />
                             </div>
-                        </div>
+                        </HandlessTippy>
                     </div>
                 </div>
 
-                <div className="grid__column-4 grid__column-md-12 search__group">
+                <div className="search__group__date">
                     <div className="search__input ">
                         <label className="search__input__label" htmlFor="">
                             Ngày đi
@@ -131,12 +211,17 @@ const Search = () => {
                             showLeadingZeros={true}
                         />
                     </div>
-                    <div className="search__input ">
-                        <label className="search__input__label search__input__label-to" htmlFor="">
+                    <div className="search__input">
+                        <label
+                            className="search__input__label search__input__label-to search__title--disabled"
+                            htmlFor=""
+                        >
                             Ngày về
                         </label>
                         <DatePicker
-                            className="search-date__field search__input_form search-input__field"
+                            className={`search-date__field search__input_form search-input__field ${
+                                !roundTrip ? 'search__input--disabled' : ''
+                            }`}
                             minDate={new Date()}
                             inputRef={dateRef}
                             onChange={setDateTo}
@@ -147,26 +232,9 @@ const Search = () => {
                         />
                     </div>
                 </div>
-
-                <div className="grid__column-3 grid__column-md-12 search__group">
-                    <div className="search__input">
-                        <label className="search__input__label" htmlFor="">
-                            Số khách
-                        </label>
-                        <div className="search__input__qty">
-                            <input
-                                className="search__field"
-                                type="input"
-                                placeholder="Đi cùng với ai?"
-                                value=""
-                                onChange={(e) => e.preventDefault()}
-                            />
-                            <button className="btn btn--primary btn-search">
-                                <i className="bx bx-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <Button onClick={handleSubmit} buttonStyle={'search-btn'}>
+                    <i className="bx bx-search"></i>TÌM NGAY
+                </Button>
             </div>
         </div>
     );

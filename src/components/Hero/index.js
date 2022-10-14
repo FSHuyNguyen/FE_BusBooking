@@ -1,4 +1,6 @@
 import React from 'react';
+import slider from '~/assets/slider';
+import Image from '../Image';
 import Search from '../Search';
 
 const Hero = () => {
@@ -14,10 +16,10 @@ const Hero = () => {
                     <div className="slideshow_wrapper">
                         <div className="slideshow">
                             <div className="slide_two slide">
-                                <img className="slider-img" src="./assets/slider/slidershow_01.jpg" />
+                                <Image alt="Logo" className="slider-img" src={slider.slider1}></Image>
                             </div>
                             <div className="slide_three slide">
-                                <img className="slider-img" src="./assets/slider/slidershow_02.jpg" />
+                                <Image alt="Logo" className="slider-img" src={slider.slider2}></Image>
                             </div>
                         </div>
                     </div>

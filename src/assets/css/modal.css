@@ -7,14 +7,13 @@
     bottom: 0;
     left: 0;
     z-index: 1000000;
-    animation: fadeIn linear .1s;
 }
 
 .modal__overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgb(0, 0, 0, .4);
+    background-color: rgb(0, 0, 0, 0.4);
 }
 
 .modal__body {
@@ -23,28 +22,30 @@
     margin: auto;
     position: relative;
     z-index: 1;
-    animation: growth linear .1s;
     height: 92vh;
-    width: 50%;
+    width: 430px;
+}
+
+.forgot-pass,
+.signup-link {
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 14px;
 }
 
 /* Modal Login/Register Form */
-.form_modal {
+.form_modal.login {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin: auto;
     max-width: 430px;
     width: 100%;
-    top: 0px;
+    top: 14px;
     padding: 30px;
     border-radius: 6px;
     background-color: #fff;
-}
-
-.modal_forms .signup {
-    opacity: 0;
-    pointer-events: none;
 }
 
 .modal_forms.show-signup .form_modal.signup {
@@ -64,17 +65,19 @@
     margin: auto;
     max-width: 430px;
     width: 100%;
-    top: -16px;
+    top: -14px;
+    height: 105%;
     padding: 18px;
     border-radius: 6px;
     background-color: #fff;
 }
 
-header {
+.form-content header {
     font-size: 28px;
     font-weight: 600;
     color: #232836;
     text-align: center;
+    margin-top: 10px;
 }
 
 form {
@@ -85,6 +88,23 @@ form {
     position: relative;
     height: 45px;
     width: 100%;
-    margin: 10px 0 25px 0;
-    border-radius: 6px;
+    margin: 10px 0 20px 0;
+    background: rgba(22, 24, 35, 0.06);
+    border: 1px solid rgba(22, 24, 35, 0.06);
+    border-radius: 44px;
+}
+
+.media-options .field {
+    position: relative;
+    height: 45px;
+    width: 100%;
+    margin: 10px 0 20px 0;
+    background-color: #fff;
+    border: 2px solid #dce0e3;
+    border-radius: 44px;
+}
+
+.field-title {
+    font-size: 16px;
+    font-weight: 400;
 }

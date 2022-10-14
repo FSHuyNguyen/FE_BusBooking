@@ -103,7 +103,7 @@ const Search = () => {
                                                         <li className="place-list-item" key={item.id}>
                                                             <button
                                                                 onClick={() => handleChooseFrom(item.point)}
-                                                                className="list-item"
+                                                                className="list-item-from"
                                                             >
                                                                 {item.point}
                                                             </button>
@@ -156,7 +156,7 @@ const Search = () => {
                                                             <li className="place-list-item" key={data.id}>
                                                                 <button
                                                                     onClick={() => handleChooseTo(data.point)}
-                                                                    className="list-item"
+                                                                    className="list-item-to"
                                                                 >
                                                                     {data.point}
                                                                 </button>

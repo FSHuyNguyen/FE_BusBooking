@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import React from 'react';
+import React, { useEffect } from 'react';
 import images from '~/assets/img';
 import Button from '../../Button';
 import Image from '../../Image';
@@ -30,7 +30,6 @@ const Register = ({ onChangeForm, onClose }) => {
             dispatch(registerUser(values));
         },
     });
-
     return (
         <div className={`form_modal signup`}>
             <div className="form-content">

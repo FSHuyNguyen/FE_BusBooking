@@ -43,6 +43,39 @@ const authSlice = createSlice({
                             status: action.payload.status,
                         };
                 }
+            })
+            .addCase(getUser.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(getUser.fulfilled, (state, action) => {
+                switch (action.payload.status) {
+                    case 200:
+                        state.loading = false;
+                        state.isAuthenticated = true;
+                        state.user = action.payload.user;
+                        break;
+                    default:
+                        state.loading = false;
+                        state.isAuthenticated = false;
+                        state.notify = {
+                            title: 'error',
+                            msg: action.payload.msg,
+                            status: action.payload.status,
+                        };
+                }
+            })
+            .addCase(logout.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(logout.fulfilled, (state, action) => {
+                switch (action.payload.status) {
+                    case 200:
+                        state.loading = false;
+                        state.isAuthenticated = false;
+                        state.user = null;
+                        break;
+                    default:
+                }
             });
     },
 });
@@ -72,10 +105,47 @@ const registerUser = createAsyncThunk('auth/register', async (data) => {
     }
 });
 
-const loginUser = createAsyncThunk('auth/login', async (data) => {
+const getUser = createAsyncThunk('auth/getuser', async () => {
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    if (!localStorage.getItem('TOKEN'))
+        return {
+            status: 401,
+            msg: 'No token',
+        };
+    const bearerToken = () => `Bearer ${localStorage.getItem('TOKEN')}`;
+
     try {
-    } catch {}
+        const res = await axios.get(baseURL + '/auth/getuserbytoken', {
+            headers: { Authorization: bearerToken() },
+        });
+
+        return res.data;
+    } catch (error) {}
 });
 
-export { registerUser };
+const logout = createAsyncThunk('auth/logout', async () => {
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    if (!localStorage.getItem('TOKEN'))
+        return {
+            status: 401,
+            msg: 'No token',
+        };
+    const bearerToken = () => `Bearer ${localStorage.getItem('TOKEN')}`;
+
+    try {
+        const res = await axios.post(
+            baseURL + '/auth/logout',
+            {},
+            {
+                headers: { Authorization: bearerToken() },
+            },
+        );
+        if (res.data.status === 200) {
+            localStorage.removeItem('TOKEN');
+        }
+        return res.data;
+    } catch (error) {}
+});
+
+export { registerUser, getUser, logout };
 export default authSlice;

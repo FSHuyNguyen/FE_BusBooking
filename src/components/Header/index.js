@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import images from '~/assets/img';
 import Button from '~/components/Button';
+import { authSelector } from '~/redux/selector';
 import Auth from '../Auth';
+import { getUser } from '../Auth/authSlice';
 import Image from '../Image';
+import User from '../User';
 
 const Header = () => {
+    const dispatch = useDispatch();
     const [onAuth, setOnAuth] = useState(false);
     const handleClose = () => setOnAuth(false);
+    const authState = useSelector(authSelector);
+    useEffect(() => {
+        dispatch(getUser());
+    }, []);
     return (
         <>
             <header id="header" className="header">
@@ -57,29 +66,17 @@ const Header = () => {
                                         Đơn hàng
                                     </Link>
                                 </li>
-                                <Button version="secondary" onClick={() => setOnAuth(true)}>
-                                    Đăng nhập
-                                </Button>
-                                <li
-                                    id="navbar__category-info"
-                                    className="navbar__category-item navbar__category-info"
-                                    style={{ display: 'none' }}
-                                >
-                                    <div className="navbar__category-link navbar__category-info-link">
-                                        <Image src={images.userImg} className="navbar__category-info-img"></Image>
-                                    </div>
-                                    <div className="navbar__category-info-dropdown">
-                                        <div className="navbar__category-info-dropdown__header">
-                                            <Image
-                                                src={images.userImg}
-                                                className="navbar__category-info-img"
-                                                alt=""
-                                            ></Image>
-                                            <span>Nguyen Van Huy</span>
-                                        </div>
-                                        <div id="dropdown_content"></div>
-                                    </div>
-                                </li>
+                                {!authState.isAuthenticated ? (
+                                    <Button version="secondary" onClick={() => setOnAuth(true)}>
+                                        Đăng nhập
+                                    </Button>
+                                ) : (
+                                    <User
+                                        name={authState.user.name}
+                                        image={authState.user.image}
+                                        email={authState.user.email}
+                                    />
+                                )}
                             </ul>
                         </div>
 
@@ -109,7 +106,7 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-            <Auth authOpen={onAuth} onClose={handleClose} />
+            {!authState.isAuthenticated && <Auth authOpen={onAuth} onClose={handleClose} />}
         </>
     );
 };

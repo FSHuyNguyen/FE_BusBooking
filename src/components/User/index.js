@@ -5,6 +5,7 @@ import HandlessTippy from '@tippyjs/react/headless';
 import Button from '../Button';
 import { useDispatch } from 'react-redux';
 import { logout } from '../Auth/authSlice';
+import '~/components/User/style.css';
 
 const User = (props) => {
     const dispatch = useDispatch();

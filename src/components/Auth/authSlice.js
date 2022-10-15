@@ -28,14 +28,13 @@ const authSlice = createSlice({
                 state.loading = true;
             })
             .addCase(registerUser.fulfilled, (state, action) => {
+                state.loading = false;
                 switch (action.payload.status) {
                     case 200:
-                        state.loading = false;
                         state.isAuthenticated = true;
                         state.user = action.payload.user;
                         break;
                     default:
-                        state.loading = false;
                         state.isAuthenticated = false;
                         state.notify = {
                             title: 'error',
@@ -48,29 +47,54 @@ const authSlice = createSlice({
                 state.loading = true;
             })
             .addCase(getUser.fulfilled, (state, action) => {
+                state.loading = false;
                 switch (action.payload.status) {
                     case 200:
-                        state.loading = false;
                         state.isAuthenticated = true;
                         state.user = action.payload.user;
                         break;
                     default:
-                        state.loading = false;
                         state.isAuthenticated = false;
-                        state.notify = {
-                            title: 'error',
-                            msg: action.payload.msg,
-                            status: action.payload.status,
-                        };
+                }
+            })
+            .addCase(loginUser.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.loading = false;
+                switch (action.payload.status) {
+                    case 200:
+                        state.isAuthenticated = true;
+                        state.user = action.payload.user;
+                        break;
+                    default:
+                        state.isAuthenticated = false;
+                        if (typeof action.payload.msg === 'object') {
+                            state.notify = {
+                                title: 'error',
+                                msg: {
+                                    ...action.payload.msg,
+                                },
+                                status: action.payload.status,
+                            };
+                        } else {
+                            state.notify = {
+                                title: 'error',
+                                msg: {
+                                    error: action.payload.msg,
+                                },
+                                status: action.payload.status,
+                            };
+                        }
                 }
             })
             .addCase(logout.pending, (state, action) => {
                 state.loading = true;
             })
             .addCase(logout.fulfilled, (state, action) => {
+                state.loading = false;
                 switch (action.payload.status) {
                     case 200:
-                        state.loading = false;
                         state.isAuthenticated = false;
                         state.user = null;
                         break;
@@ -123,6 +147,29 @@ const getUser = createAsyncThunk('auth/getuser', async () => {
     } catch (error) {}
 });
 
+const loginUser = createAsyncThunk('auth/login', async (data) => {
+    try {
+        const res = await axios.post(
+            process.env.REACT_APP_BASE_URL + '/auth/login',
+            {
+                email: data.email,
+                password: data.password,
+            },
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+        );
+        if (res.data.status === 200) {
+            localStorage.setItem('TOKEN', res.data.token);
+        }
+        return res.data;
+    } catch (error) {
+        return error.response.data;
+    }
+});
+
 const logout = createAsyncThunk('auth/logout', async () => {
     const baseURL = process.env.REACT_APP_BASE_URL;
     if (!localStorage.getItem('TOKEN'))
@@ -147,5 +194,5 @@ const logout = createAsyncThunk('auth/logout', async () => {
     } catch (error) {}
 });
 
-export { registerUser, getUser, logout };
+export { registerUser, getUser, loginUser, logout };
 export default authSlice;

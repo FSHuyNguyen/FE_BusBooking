@@ -1,9 +1,34 @@
-import React from 'react';
+import { useFormik } from 'formik';
+import React, { useState } from 'react';
 import images from '~/assets/img';
 import Button from '../../Button';
 import Image from '../../Image';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../authSlice';
+import { authSelector } from '~/redux/selector';
 
 const Login = ({ onChangeForm, onClose }) => {
+    const dispatch = useDispatch();
+    const authState = useSelector(authSelector);
+    const [showPassword, setShowPassword] = useState(false);
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().email('Kiểm tra lại định dạng Email').required('Vui lòng nhập email'),
+            password: Yup.string().min(6, 'Mật khẩu tối thiểu là 6 ký tự').required('Vui lòng nhập mặt khẩu'),
+        }),
+        onSubmit: (values) => {
+            dispatch(loginUser(values));
+        },
+    });
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
     return (
         <div className={`form_modal login`}>
             <div className="form-content">
@@ -24,28 +49,53 @@ const Login = ({ onChangeForm, onClose }) => {
                     </button>
                 </div>
 
-                <form action="#" id="login-form">
+                <form id="login-form" onSubmit={formik.handleSubmit}>
                     <div className="field input-field form-group">
                         <input
                             type="email"
                             name="email"
                             rules="required|email"
                             placeholder="Nhập email"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             className="form-control input"
                         />
-                        <span className="form-message"></span>
+                        {(authState.notify.msg.email && (
+                            <span className="form-message">{authState.notify.msg.email}</span>
+                        )) ||
+                            (formik.errors.email && formik.touched.email && (
+                                <span className="form-message">{formik.errors.email}</span>
+                            ))}
                     </div>
 
                     <div className="field input-field form-group">
                         <input
-                            type="password"
+                            type={`${showPassword ? 'text' : 'password'}`}
                             name="password"
                             rules="required|min:6"
                             placeholder="Nhập mật khẩu"
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             className="form-control password"
                         />
-                        <span className="form-message"></span>
-                        <i className="bx bxs-hide eye-icon"></i>
+
+                        {(authState.notify.msg.error && (
+                            <span className="form-message">{authState.notify.msg.error}</span>
+                        )) ||
+                            (formik.errors.password && formik.touched.password && (
+                                <span className="form-message">{formik.errors.password}</span>
+                            )) ||
+                            (authState.notify.msg.password && (
+                                <span className="form-message">{authState.notify.msg.password}</span>
+                            ))}
+                        <i
+                            className={`${
+                                showPassword ? 'bx bxs-show eye-icon' : 'bx bxs-hide eye-icon'
+                            } bx bxs-hide eye-icon`}
+                            onClick={handleShowPassword}
+                        ></i>
                     </div>
 
                     <div className="form-link">
@@ -53,7 +103,7 @@ const Login = ({ onChangeForm, onClose }) => {
                     </div>
 
                     <div className="field button-field">
-                        <Button>ĐĂNG NHẬP</Button>
+                        <Button type="submit">ĐĂNG NHẬP</Button>
                     </div>
                 </form>
 

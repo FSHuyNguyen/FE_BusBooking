@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '~/components/BackToTop/style.css';
 
 const BackToTop = () => {
     const [backTop, setBackTop] = useState(false);

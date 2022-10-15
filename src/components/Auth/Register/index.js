@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import images from '~/assets/img';
 import Button from '../../Button';
 import Image from '../../Image';
@@ -11,6 +11,9 @@ import { authSelector } from '~/redux/selector';
 const Register = ({ onChangeForm, onClose }) => {
     const dispatch = useDispatch();
     const authState = useSelector(authSelector);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showReenterPassword, setShowReenterPassword] = useState(false);
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -30,6 +33,14 @@ const Register = ({ onChangeForm, onClose }) => {
             dispatch(registerUser(values));
         },
     });
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleShowReenterPassword = () => {
+        setShowReenterPassword(!showReenterPassword);
+    };
     return (
         <div className={`form_modal signup`}>
             <div className="form-content">
@@ -88,7 +99,7 @@ const Register = ({ onChangeForm, onClose }) => {
 
                     <div className="field input-field">
                         <input
-                            type="password"
+                            type={`${showPassword ? 'text' : 'password'}`}
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -103,12 +114,17 @@ const Register = ({ onChangeForm, onClose }) => {
                             (formik.errors.password && formik.touched.password && (
                                 <span className="form-message">{formik.errors.password}</span>
                             ))}
-                        <i className="bx bxs-hide eye-icon"></i>
+                        <i
+                            className={`${
+                                showPassword ? 'bx bxs-show eye-icon' : 'bx bxs-hide eye-icon'
+                            } bx bxs-hide eye-icon`}
+                            onClick={handleShowPassword}
+                        ></i>
                     </div>
 
                     <div className="field input-field">
                         <input
-                            type="password"
+                            type={`${showReenterPassword ? 'text' : 'password'}`}
                             name="reenter_password"
                             value={formik.values.reenter_password}
                             onChange={formik.handleChange}
@@ -122,11 +138,16 @@ const Register = ({ onChangeForm, onClose }) => {
                             (formik.errors.reenter_password && formik.touched.reenter_password && (
                                 <span className="form-message">{formik.errors.reenter_password}</span>
                             ))}
-                        <i className="bx bxs-hide eye-icon"></i>
+                        <i
+                            className={`${
+                                showReenterPassword ? 'bx bxs-show eye-icon' : 'bx bxs-hide eye-icon'
+                            } bx bxs-hide eye-icon`}
+                            onClick={handleShowReenterPassword}
+                        ></i>
                     </div>
 
                     <div className="field button-field">
-                        <Button type="submit">Đăng ký</Button>
+                        <Button type="submit">ĐĂNG KÝ</Button>
                     </div>
                 </form>
 

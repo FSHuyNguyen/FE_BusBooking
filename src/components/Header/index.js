@@ -1,3 +1,4 @@
+import { Loading } from 'notiflix';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Auth from '../Auth';
 import { getUser } from '../Auth/authSlice';
 import Image from '../Image';
 import User from '../User';
+import '~/components/Header/style.css';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -17,25 +19,21 @@ const Header = () => {
     useEffect(() => {
         dispatch(getUser());
     }, []);
+    console.log(onAuth);
+    useEffect(() => {
+        setOnAuth(false);
+        authState.loading ? Loading.pulse({ zindex: 999999, svgColor: 'var(--primary-color)' }) : Loading.remove(500);
+    }, [authState.isAuthenticated, authState.loading]);
     return (
         <>
             <header id="header" className="header">
-                <div className="grid">
+                <div className="grid container">
                     <div className="navbar">
                         <div className="navbar__logo">
-                            <label htmlFor="nav-input" id="icon-menu" className="icon-menu">
-                                <i className="bx bx-menu"></i>
-                            </label>
                             <Link to="/" className="navbar__logo-link navbar__logo-img">
                                 <Image src={images.logo} className="navbar__logo-img" alt="Logo Bus"></Image>
                             </Link>
-                            <label htmlFor="nav-search" className="icon-search">
-                                <i className="bx bx-search"></i>
-                            </label>
                         </div>
-                        <input type="checkbox" hidden id="nav-input" className="nav-input" />
-
-                        <label htmlFor="nav-input" className="nav__overlay"></label>
 
                         <div id="navbar" className="navbar__select">
                             <div className="navbar__select__remove navbar__remove-active">
@@ -79,7 +77,6 @@ const Header = () => {
                                 )}
                             </ul>
                         </div>
-
                         <input type="checkbox" hidden id="nav-search" className="nav-search" />
                         <div className="navbar__search">
                             <div className="navbar__search__remove navbar__remove-active">
@@ -103,6 +100,9 @@ const Header = () => {
                                 <div id="place_search" className="search-box__content__place"></div>
                             </div>
                         </div>
+                        <label htmlFor="nav-input" id="icon-menu" className="icon-menu">
+                            <i className="bx bx-menu"></i>
+                        </label>
                     </div>
                 </div>
             </header>

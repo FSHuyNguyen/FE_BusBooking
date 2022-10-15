@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    overflow-y: overlay;
+}
+
+/* Category statistic */
+.category-statistic {
+    width: 100%;
+    padding: 30px 0;
+    background-color: #f2f2f2;
+}
+
+.statistic-heading {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 2.6rem;
+    color: var(--black-color);
+}
+
+.statistic-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.statistic-item {
+    width: 315px;
+    height: 174px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #ccc;
+    display: flex;
+    list-style: none;
+    background-color: var(--white-color);
+    padding: 20px;
+    pointer-events: none;
+}
+
+.statistic-item__icon {
+    padding-right: 20px;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.statistic-item__heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.statistic-item__description {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #858585;
+    line-height: 2rem;
+}

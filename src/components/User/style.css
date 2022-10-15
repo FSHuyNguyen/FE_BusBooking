@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    overflow-y: overlay;
+}
+
+/* Info Home */
+.navbar__category-info-img {
+    border-radius: 50%;
+    width: 30px;
+}
+
+.navbar__category-info-dropdown {
+    display: block;
+    position: relative;
+    background-color: var(--white-color);
+    right: 70px;
+    padding: 10px 20px;
+    box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.navbar__category-info-dropdown li {
+    padding: 10px 0;
+    text-align: left;
+}
+
+.navbar__category-info-dropdown li > a {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.navbar__category-info-dropdown li > a > i {
+    width: 20px;
+}
+
+.navbar__category-info-dropdown li:hover i,
+.navbar__category-info-dropdown li:hover {
+    color: var(--primary-color);
+}
+
+.navbar__category-info-dropdown i {
+    width: 16px;
+    font-size: 1.8rem;
+    margin-right: 12px;
+}
+
+.navbar__category-info-dropdown__content {
+    border-bottom: 1px solid #ccc;
+}
+
+.navbar__category-info-dropdown__content:last-child {
+    border-bottom: none;
+}
+
+.navbar__category-info-dropdown__header {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__category-info-dropdown__header > img + span {
+    margin-left: 12px;
+}
+
+.navbar__category-info-dropdown__header > span {
+    font-size: 1.6rem;
+}
+
+/* Cart dropmenu */
+.navbar__category-cart-dropdown {
+    display: none;
+    position: absolute;
+    background-color: var(--white-color);
+    top: 75%;
+    right: 66px;
+    padding: 14px 20px;
+    box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.navbar__category-cart-dropdown__header {
+    padding: 6px;
+}
+
+.navbar__category-cart:hover .navbar__category-cart-dropdown {
+    display: block;
+}
+
+.navbar__category-cart-dropdown__header > span {
+    font-size: 1.4rem;
+    width: 100%;
+}
+
+.navbar__category-cart-dropdown__header > span:hover {
+    color: var(--primary-color);
+}
+
+.navbar__category-cart-dropdown__content {
+    border-bottom: 1px solid #ccc;
+}
+
+.navbar__category-cart-dropdown__content:last-child {
+    border-bottom: none;
+}
+
+.navbar__category-cart-dropdown li > span {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}

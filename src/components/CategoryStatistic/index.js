@@ -1,9 +1,10 @@
 import React from 'react';
+import '~/components/CategoryStatistic/style.css';
 
 const CategoryStatistic = () => {
     return (
         <div className="category-statistic">
-            <div className="grid">
+            <div className="grid container">
                 <h2 className="statistic-heading">Platform connects users and bus operators</h2>
                 <ul className="statistic-list">
                     <li className="statistic-item">

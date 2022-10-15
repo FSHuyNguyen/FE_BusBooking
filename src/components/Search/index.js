@@ -1,3 +1,4 @@
+import '~/components/Search/style.css';
 import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-date-picker';
 import HandlessTippy from '@tippyjs/react/headless';
@@ -94,7 +95,7 @@ const Search = () => {
                             placement="bottom-start"
                             zIndex="9999999"
                             render={(attrs) => (
-                                <div className="data_list_search" tabIndex={'-1'} {...attrs}>
+                                <div className="data_list_search-from" tabIndex={'-1'} {...attrs}>
                                     <ul className="place-list">
                                         {dataSearch &&
                                             dataSearch.map(
@@ -147,7 +148,7 @@ const Search = () => {
                             offset={[-238, 10]}
                             render={(attrs) =>
                                 inputFrom ? (
-                                    <div className="data_list_search" tabIndex={'-1'} {...attrs}>
+                                    <div className="data_list_search-to" tabIndex={'-1'} {...attrs}>
                                         <ul className="place-list">
                                             {dataSearch &&
                                                 dataSearch.map(

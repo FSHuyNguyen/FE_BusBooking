@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '~/components/CategoryDeal/style.css';
 
 const CategoryDeal = () => {
     const [dataDeal, setDataDeal] = useState([]);
@@ -24,8 +25,8 @@ const CategoryDeal = () => {
         }).format(value);
 
     return (
-        <div className="category-deal">
-            <div className="grid">
+        <div className="category-deal container">
+            <div className="grid ">
                 <h2 className="deal-heading">Chuyến xe giá tốt nhất</h2>
                 <div className="deal-list">
                     <div id="deal-item-contents" className="deal-item-content">

@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    overflow-y: overlay;
+}
+
+.footer {
+    width: 100%;
+    background-color: black;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-menu__list {
+    display: flex;
+    list-style: none;
+}
+
+.footer-menu__item {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--white-color);
+    padding: 10px 22px;
+    text-decoration: none;
+    position: relative;
+}
+
+.footer-menu__item:hover .underline::before,
+.footer-menu__item:hover .underline::after {
+    width: 30%;
+    top: calc(100% - 8px);
+    height: 1px;
+    background-color: var(--white-color);
+}
+
+.footer-menu__copy-right {
+    font-size: 1.2rem;
+    color: var(--white-color);
+    font-weight: 500;
+    padding: 10px 22px;
+}
+
+.footer-social__list {
+    display: flex;
+}
+
+.footer-social__list a {
+    background-color: var(--white-color);
+    font-size: 20px;
+}
+
+.footer-social__item {
+    width: 35px;
+    height: 35px;
+    border: 1px solid var(--white-color);
+    border-radius: 50%;
+    list-style: none;
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.footer-social__item:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-social__item:hover .footer-social__icon {
+    color: var(--black-color);
+}
+
+.footer-social__item .footer-social__icon {
+    font-size: 1.4rem;
+    width: 40px;
+    height: 40px;
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1024px) {
+    .footer {
+        padding: 20px 0;
+    }
+
+    .footer-menu__list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

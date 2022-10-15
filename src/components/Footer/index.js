@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '~/components/Footer/style.css';
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <div className="grid">
+            <div className="grid container">
                 <div className="footer-nav">
                     <div className="footer-menu">
                         <div className="footer-menu__list">

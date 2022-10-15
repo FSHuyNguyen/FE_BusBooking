@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import Image from '../Image';
 import images from '~/assets/img';
+import '~/components/CategoryServices/style.css';
 
 const CategoryServices = () => {
     return (

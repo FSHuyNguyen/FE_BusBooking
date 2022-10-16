@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-body {
-    overflow-y: overlay;
-}
-
 /* Info Home */
 .navbar__category-info-img {
     border-radius: 50%;

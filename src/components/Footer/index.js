@@ -38,7 +38,7 @@ const Footer = () => {
                                 <span className="underline footer-menu__item--underline"></span>
                             </Link>
                         </div>
-                        <h5 className="footer-menu__copy-right">© 2022 Huy Bus Lines</h5>
+                        <h5 className="footer-menu__copy-right">© 2022 Bus Lines</h5>
                     </div>
                     <div className="footer-social">
                         <div className="footer-social__list">

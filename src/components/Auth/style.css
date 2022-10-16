@@ -19,8 +19,6 @@
 .modal__body {
     --growth-form: 0.8;
     --growth-to: 1;
-    margin: auto;
-    position: relative;
     z-index: 1;
     height: 92vh;
     width: 430px;
@@ -38,11 +36,10 @@
 .form_modal.login {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    margin: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
     max-width: 430px;
-    width: 100%;
-    top: 14px;
+    width: 90%;
     padding: 30px;
     border-radius: 6px;
     background-color: #fff;
@@ -61,12 +58,10 @@
 .form_modal.signup {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    margin: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
     max-width: 430px;
     width: 100%;
-    top: -14px;
-    height: 105%;
     padding: 18px;
     border-radius: 6px;
     background-color: #fff;
@@ -105,7 +100,8 @@ form {
 }
 
 .field-title {
-    font-size: 16px;
+    margin-left: 20px;
+    font-size: 13px;
     font-weight: 400;
 }
 
@@ -140,5 +136,52 @@ form {
 @media only screen and (max-width: 1024px) {
     .modal__body {
         height: 55vh;
+    }
+}
+
+/* iphone có height dưới 700px */
+@media only screen and (max-width: 600px) and (max-height: 700px) {
+    .modal__body {
+        height: 100vh;
+    }
+
+    .form-content header {
+        margin: 0;
+        line-height: 28px;
+    }
+
+    .form_modal .field {
+        margin: 10px 0 15px 0;
+    }
+
+    .media-options .field {
+        margin: 15px 0;
+    }
+
+    .field-title {
+        margin-left: 24px;
+    }
+
+    .form_modal.signup {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-height: 701px) {
+    .modal__body {
+        height: 90vh;
+    }
+
+    .form_modal.login {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .form_modal.signup {
+        width: 90%;
+    }
+
+    .media-options .field {
+        margin: 10px 0;
     }
 }

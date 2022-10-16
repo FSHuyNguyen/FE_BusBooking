@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-body {
-    overflow-y: overlay;
-}
-
 /* Container */
 /* Search */
 .search {
@@ -34,6 +30,7 @@ body {
     font-size: 3rem;
     font-weight: 400;
     padding-left: 10px;
+    text-align: center;
 }
 
 .search__search-input {
@@ -376,5 +373,70 @@ body {
 
     .statistic-item {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .search > .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .search__heading {
+        margin: 20px 0;
+    }
+
+    .search__heading-icon {
+        padding: 0;
+    }
+
+    .search__heading-title {
+        font-size: 1.7rem;
+        font-weight: 500;
+        padding: 0;
+    }
+
+    .search__middle {
+        width: 100%;
+        margin: 20px 0 60px;
+    }
+
+    .search__input {
+        padding: 10px 4px;
+    }
+
+    .select__box-search {
+        gap: 20px;
+    }
+
+    .search-btn {
+        top: 260px;
+        right: 24px;
+    }
+
+    .data_list_search-from {
+        margin-left: 0;
+        min-width: 214%;
+    }
+
+    .data_list_search-to {
+        min-width: 150%;
+        margin-left: 38px;
+    }
+
+    .place-list .please-select {
+        font-size: 14px;
+    }
+
+    .data_list_select {
+        min-width: 127%;
+        margin-left: 37px;
+    }
+
+    .search__input .react-date-picker__calendar {
+        width: 222%;
+        z-index: 9999999;
     }
 }

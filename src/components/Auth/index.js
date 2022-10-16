@@ -1,11 +1,10 @@
-import { Loading } from 'notiflix';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from '~/redux/selector';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import authSlice from './authSlice';
 import Login from './Login';
 import Register from './Register';
 import '~/components/Auth/style.css';
+import { disabledScroll, enabledScroll } from '~/utils/scrollBody';
 
 const Auth = ({ authOpen, onClose }) => {
     const dispatch = useDispatch();
@@ -15,7 +14,6 @@ const Auth = ({ authOpen, onClose }) => {
         setChangeForm(true);
         onClose();
     };
-    console.log(authOpen);
 
     const handleChangForm = () => {
         if (changeForm) {
@@ -26,6 +24,8 @@ const Auth = ({ authOpen, onClose }) => {
             dispatch(authSlice.actions.removeNotify());
         }
     };
+
+    authOpen ? disabledScroll() : enabledScroll();
 
     return (
         <div id="forms" className={`modal ${authOpen ? '' : 'hidden'}`}>

@@ -36,14 +36,18 @@
 .navbar__menu-item {
     font-size: 1.4rem;
     line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar__menu-item-link {
-    display: block;
+    position: relative;
+    display: flex;
     font-size: 1.6rem;
     font-weight: 500;
     padding: 20px 0;
-    text-align: left;
+    align-items: center;
     color: #333;
     border: none;
     background-color: transparent;
@@ -58,17 +62,47 @@
     font-size: 2rem;
 }
 
+.sidebar-arrow {
+    color: #757575;
+    width: 20px;
+    font-size: 2.2rem;
+}
+
 .navbar__menu-item-link > span {
     font-size: 1.8rem;
     line-height: 1.8rem;
 }
 
 .navbar__menu-list:last-child {
+    margin-bottom: 40vh;
     border: none;
 }
 
 .navbar__menu-list {
     border-bottom: 1px solid rgba(0, 0, 0, 0.079);
+}
+
+.back-current-sidebar {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.arrow-sidebar-left {
+    margin-right: 18px;
+    font-size: 1.8rem;
+}
+
+.navbar__select-back {
+    display: flex;
+    font-size: 1.4rem;
+}
+
+.navbar__select-back > h2 {
+    text-align: center;
+    font-size: 2rem;
 }
 
 @media only screen and (max-width: 600px) {

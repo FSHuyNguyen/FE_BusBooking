@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '~/components/CategoryDeal/style.css';
+import Skeleton from 'react-loading-skeleton';
+import ContentLoader from 'react-content-loader';
 
 const CategoryDeal = () => {
     const [dataDeal, setDataDeal] = useState([]);
@@ -29,8 +31,55 @@ const CategoryDeal = () => {
             <div className="grid ">
                 <h2 className="deal-heading">Chuyến xe giá tốt nhất</h2>
                 <div className="deal-list">
-                    <div id="deal-item-contents" className="deal-item-content">
-                        {dataDeal &&
+                    <div className="deal-item-content">
+                        {(dataDeal.length === 0 && (
+                            <>
+                                <ContentLoader
+                                    speed={2}
+                                    width={'100%'}
+                                    height={122}
+                                    backgroundColor="#f3f3f3"
+                                    foregroundColor="#ecebeb"
+                                >
+                                    <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
+                                    <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
+                                    <rect x="171" y="50" rx="0" ry="0" width="calc(80%)" height="35" />
+                                </ContentLoader>
+                                <ContentLoader
+                                    speed={2}
+                                    width={'100%'}
+                                    height={122}
+                                    backgroundColor="#f3f3f3"
+                                    foregroundColor="#ecebeb"
+                                >
+                                    <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
+                                    <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
+                                    <rect x="171" y="50" rx="0" ry="0" width="calc(80%)" height="35" />
+                                </ContentLoader>
+                                <ContentLoader
+                                    speed={2}
+                                    width={'100%'}
+                                    height={122}
+                                    backgroundColor="#f3f3f3"
+                                    foregroundColor="#ecebeb"
+                                >
+                                    <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
+                                    <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
+                                    <rect x="171" y="50" rx="0" ry="0" width="calc(80%)" height="35" />
+                                </ContentLoader>
+                                <ContentLoader
+                                    speed={2}
+                                    width={'100%'}
+                                    height={122}
+                                    backgroundColor="#f3f3f3"
+                                    foregroundColor="#ecebeb"
+                                >
+                                    <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
+                                    <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
+                                    <rect x="171" y="50" rx="0" ry="0" width="calc(80%)" height="35" />
+                                </ContentLoader>
+                            </>
+                        )) ||
                             dataDeal.map((item) => (
                                 <div className="deal-item" key={item.id}>
                                     <Link to="/" className="deal-items">

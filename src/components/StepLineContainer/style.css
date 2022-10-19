@@ -1,0 +1,122 @@
+.step-line-container {
+    position: static;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.step-line {
+    position: relative;
+    font-family: SFProText;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    font-weight: 600;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 32px;
+    font-size: 12px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.step-circles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.current-step {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    border-radius: 16px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    color: #fff;
+}
+
+.active-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    position: absolute;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    top: -50px;
+    display: flex;
+}
+
+.active-title span {
+    align-self: flex-end;
+}
+
+.next-step {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--primary-color);
+    background-color: #fff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-step .text {
+    color: var(--primary-color);
+}
+
+.empty-step {
+    width: 32px;
+    height: 32px;
+    background-color: #ededed;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-step .text {
+    color: #637280;
+}
+
+.next-title {
+    font-weight: 600;
+    color: #637280;
+    position: absolute;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    top: -50px;
+    display: flex;
+    align-items: center;
+}
+
+.line_search {
+    position: relative;
+    top: -19px;
+    height: 6px;
+    z-index: -1;
+    border-radius: 2.5px;
+    background-color: #ededed;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.current-line_search {
+    height: 6px;
+    border-radius: 2.5px;
+    background-color: var(--primary-color);
+    flex: 1;
+}
+
+.next-line_search {
+    flex: 1;
+}

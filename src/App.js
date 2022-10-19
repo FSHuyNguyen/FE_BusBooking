@@ -1,7 +1,6 @@
-import 'react-calendar/dist/Calendar.css';
-import 'react-date-picker/dist/DatePicker.css';
 import '~/assets/css/base.css';
 import 'react-loading-skeleton/dist/skeleton.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';

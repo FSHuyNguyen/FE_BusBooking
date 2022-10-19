@@ -12,6 +12,8 @@ import User from '../User';
 import '~/components/Header/style.css';
 import Sidebar from '../Sidebar';
 import { disabledScroll, enabledScroll } from '~/utils/scrollBody';
+import Notify from '../Notify';
+import Skeleton from 'react-loading-skeleton';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -19,16 +21,22 @@ const Header = () => {
     const handleClose = () => setOnAuth(false);
     const authState = useSelector(authSelector);
     const [openMenu, setOpenMenu] = useState(false);
+    const [openNotify, setOpenNotify] = useState(false);
     useEffect(() => {
         dispatch(getUser());
     }, []);
 
     useEffect(() => {
-        setOnAuth(false);
+        authState.isAuthenticated && setOnAuth(false);
         authState.loading ? Loading.pulse({ zindex: 999999, svgColor: 'var(--primary-color)' }) : Loading.remove(500);
     }, [authState.isAuthenticated, authState.loading]);
 
     openMenu ? disabledScroll() : enabledScroll();
+
+    const handleOpenNotify = () => {
+        setOpenNotify(!openNotify);
+    };
+
     return (
         <>
             <header id="header" className="header">
@@ -62,18 +70,26 @@ const Header = () => {
                                     Đơn hàng
                                 </Link>
                             </li>
-                            {!authState.isAuthenticated ? (
+                            {authState.loading ? (
+                                <Skeleton circle width={40} height={40} />
+                            ) : !authState.isAuthenticated ? (
                                 <div className="btn-home">
                                     <Button version="secondary" onClick={() => setOnAuth(true)}>
                                         Đăng nhập
                                     </Button>
                                 </div>
                             ) : (
-                                <User
-                                    name={authState.user.name}
-                                    image={authState.user.image}
-                                    email={authState.user.email}
-                                />
+                                <div style={{ display: 'flex' }}>
+                                    <div className="notification-btn" onClick={handleOpenNotify}>
+                                        <i className="bx bxs-bell"></i>
+                                    </div>
+                                    {openNotify && <Notify openNotify={setOpenNotify} />}
+                                    <User
+                                        name={authState.user.name}
+                                        image={authState.user.image}
+                                        email={authState.user.email}
+                                    />
+                                </div>
                             )}
                         </ul>
                     </div>

@@ -1,7 +1,12 @@
 import React from 'react';
+import SearchContainer from '~/components/SearchContainer';
 
 const SearchPage = () => {
-    return <h1>Search Page</h1>;
+    return (
+        <>
+            <SearchContainer />
+        </>
+    );
 };
 
 export default SearchPage;

@@ -6,7 +6,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1000000;
+    z-index: 9999;
 }
 
 .modal__overlay {
@@ -68,11 +68,10 @@
 }
 
 .form-content header {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
     color: #232836;
     text-align: center;
-    margin-top: 10px;
 }
 
 form {
@@ -133,10 +132,68 @@ form {
     display: none;
 }
 
+/* ForgotPassword */
+.form_modal.Forgot-passoword {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 430px;
+    width: 90%;
+    padding: 30px;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.modal_forms.show-signup .form_modal.Forgot-password {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.input-token {
+    display: flex;
+}
+
+.btn-token {
+    background-color: red;
+}
+
 @media only screen and (max-width: 1024px) {
     .modal__body {
         height: 55vh;
     }
+}
+
+.btn-submit {
+    margin-top: 30px;
+}
+
+.form-message-token {
+    padding-bottom: 15px;
+}
+
+.btn-token {
+    position: absolute;
+    right: 30px;
+    top: 132px;
+    height: 45px;
+    border: none;
+}
+
+.disabled {
+    background-color: #ccc;
+    color: #757575;
+    cursor: not-allowed;
+    width: 30%;
+    border-radius: 9999999px;
+}
+
+.undisabled {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    cursor: pointer;
+    width: 30%;
+    border-radius: 9999999px;
 }
 
 /* iphone có height dưới 700px */
@@ -164,6 +221,10 @@ form {
 
     .form_modal.signup {
         width: 90%;
+    }
+
+    .btn-token {
+        top: 137px;
     }
 }
 

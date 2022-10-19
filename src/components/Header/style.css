@@ -7,7 +7,7 @@
     left: 0;
     background-color: white;
     z-index: 9999;
-    border-bottom: 1px solid var(--text-color);
+    box-shadow: 0 1px 4px 0 rgb(128 128 128 / 20%);
 }
 
 ul {
@@ -53,7 +53,6 @@ a {
     display: flex;
     list-style: none;
     align-items: center;
-    margin-left: 110px;
 }
 
 .navbar__category-item {
@@ -154,6 +153,13 @@ a {
     }
 }
 
+.notification-btn {
+    font-size: 2rem;
+    line-height: 2rem;
+    display: flex;
+    align-items: center;
+}
+
 @media only screen and (max-width: 1024px) {
     .navbar__logo {
         margin-right: 0;
@@ -193,7 +199,7 @@ a {
         width: 100vw;
         background: var(--white-color);
         left: -100%;
-        bottom: 0;
+        top: 0;
         z-index: 999999;
         overflow-y: overlay;
         text-align: center;
@@ -205,7 +211,8 @@ a {
     }
 
     .navbar__select__remove {
-        padding-top: 20px;
+        padding-top: 30px;
+        align-items: center;
         display: flex;
         width: 100%;
         justify-content: space-between;

@@ -1,23 +1,40 @@
 import '~/components/Search/style.css';
-import React, { useEffect, useRef, useState } from 'react';
-import DatePicker from 'react-date-picker';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import HandlessTippy from '@tippyjs/react/headless';
 import Button from '~/components/Button';
 import { useNavigate } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Image from '../Image';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
 
 const Search = () => {
-    const dateRef = useRef(null);
-    const [dateFrom, setDateFrom] = useState(new Date());
-    const [dateTo, setDateTo] = useState(new Date());
     const [showResultFrom, setShowResultFrom] = useState(false);
     const [showResultTo, setShowResultTo] = useState(false);
     const [inputFrom, setInputFrom] = useState('');
     const [inputTo, setInputTo] = useState('');
     const rotateRef = useRef(null);
     const navigate = useNavigate();
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const InputFrom = forwardRef(({ value, onClick }, ref) => (
+        <button className={`search-date__field search__input_form search-input__field `} onClick={onClick} ref={ref}>
+            <span className="date-select">{value}</span>
+        </button>
+    ));
+
+    const InputTo = forwardRef(({ value, onClick }, ref) => (
+        <button
+            className={`search-date__field search__input_form search-input__field ${
+                !roundTrip ? 'search__input--disabled' : ''
+            }`}
+            onClick={onClick}
+            ref={ref}
+        >
+            <span className="date-select">{value}</span>
+        </button>
+    ));
 
     const [dataSearch, setDataSearch] = useState([]);
     useEffect(() => {
@@ -202,14 +219,11 @@ const Search = () => {
                             Ngày đi
                         </label>
                         <DatePicker
-                            className="search-date__field search__input_form search-input__field"
+                            dateFormat="dd/MM/yyyy"
+                            selected={startDate}
                             minDate={new Date()}
-                            inputRef={dateRef}
-                            onChange={setDateFrom}
-                            clearIcon={false}
-                            calendarIcon={false}
-                            value={dateFrom}
-                            showLeadingZeros={true}
+                            onChange={(date) => setStartDate(date)}
+                            customInput={<InputFrom />}
                         />
                     </div>
                     <div className="search__input">
@@ -220,20 +234,15 @@ const Search = () => {
                             Ngày về
                         </label>
                         <DatePicker
-                            className={`search-date__field search__input_form search-input__field ${
-                                !roundTrip ? 'search__input--disabled' : ''
-                            }`}
-                            minDate={new Date()}
-                            inputRef={dateRef}
-                            onChange={setDateTo}
-                            clearIcon={false}
-                            calendarIcon={false}
-                            value={dateTo}
-                            showLeadingZeros={true}
+                            dateFormat="dd/MM/yyyy"
+                            selected={endDate}
+                            minDate={startDate}
+                            onChange={(date) => setEndDate(date)}
+                            customInput={<InputTo />}
                         />
                     </div>
                 </div>
-                <Button onClick={handleSubmit} buttonStyle={'search-btn'}>
+                <Button to="/search" onClick={handleSubmit} buttonStyle={'search-btn'}>
                     <i className="bx bx-search"></i>TÌM NGAY
                 </Button>
             </div>

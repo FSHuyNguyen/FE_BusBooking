@@ -1,0 +1,20 @@
+.search__bus-heading {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: static;
+    margin: 0 auto;
+    width: 700px;
+}
+
+.search__heading-place {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.search__heading-time {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4a4a4a;
+}

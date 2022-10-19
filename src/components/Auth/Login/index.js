@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../authSlice';
 import { authSelector } from '~/redux/selector';
 
-const Login = ({ onChangeForm, onClose }) => {
+const Login = ({ onChangeForm, onClose, onForgot }) => {
     const dispatch = useDispatch();
     const authState = useSelector(authSelector);
     const [showPassword, setShowPassword] = useState(false);
+    const [onForgotPassword, setOnForgotPassword] = useState(false);
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -29,6 +31,11 @@ const Login = ({ onChangeForm, onClose }) => {
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
+
+    const handleForgotPassword = () => {
+        onForgot(true);
+    };
+
     return (
         <div className={`form_modal login`}>
             <div className="form-content">
@@ -99,9 +106,10 @@ const Login = ({ onChangeForm, onClose }) => {
                     </div>
 
                     <div className="form-link">
-                        <Button className="forgot-pass">Quên mật khẩu?</Button>
+                        <Button className="forgot-pass" onClick={handleForgotPassword}>
+                            Quên mật khẩu?
+                        </Button>
                     </div>
-
                     <div className="field button-field">
                         <Button type="submit">ĐĂNG NHẬP</Button>
                     </div>

@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '~/components/CategoryDeal/style.css';
-import Skeleton from 'react-loading-skeleton';
 import ContentLoader from 'react-content-loader';
 
 const CategoryDeal = () => {
@@ -38,8 +37,8 @@ const CategoryDeal = () => {
                                     speed={2}
                                     width={'100%'}
                                     height={122}
-                                    backgroundColor="#f3f3f3"
-                                    foregroundColor="#ecebeb"
+                                    backgroundColor="#f5f5f5"
+                                    foregroundColor="#ccc"
                                 >
                                     <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
                                     <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
@@ -49,8 +48,8 @@ const CategoryDeal = () => {
                                     speed={2}
                                     width={'100%'}
                                     height={122}
-                                    backgroundColor="#f3f3f3"
-                                    foregroundColor="#ecebeb"
+                                    backgroundColor="#f5f5f5"
+                                    foregroundColor="#ccc"
                                 >
                                     <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
                                     <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
@@ -60,8 +59,8 @@ const CategoryDeal = () => {
                                     speed={2}
                                     width={'100%'}
                                     height={122}
-                                    backgroundColor="#f3f3f3"
-                                    foregroundColor="#ecebeb"
+                                    backgroundColor="#f5f5f5"
+                                    foregroundColor="#ccc"
                                 >
                                     <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
                                     <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />
@@ -71,8 +70,8 @@ const CategoryDeal = () => {
                                     speed={2}
                                     width={'100%'}
                                     height={122}
-                                    backgroundColor="#f3f3f3"
-                                    foregroundColor="#ecebeb"
+                                    backgroundColor="#f5f5f5"
+                                    foregroundColor="#ccc"
                                 >
                                     <rect x="0" y="0" rx="8" ry="8" width="calc(20%)" height="120" />
                                     <rect x="171" y="20" rx="0" ry="0" width="calc(80%)" height="20" />

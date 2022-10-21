@@ -143,6 +143,8 @@
     font-weight: 700;
 }
 
+/* Seat */
+
 .seat-map-content {
     min-width: 464px;
     display: flex;
@@ -284,4 +286,130 @@ td {
     fill: #637280;
     font-size: 14px;
     font-weight: 500;
+}
+
+.seat-status {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 14px;
+    width: 100%;
+    flex-direction: row;
+}
+
+.status-item {
+    display: flex;
+}
+
+.status-item-text {
+    line-height: 20px;
+    margin-left: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #637280;
+}
+
+.status-item-active {
+    border: 1px solid #cbe2f3;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #eff9ff;
+}
+
+.status-item-select {
+    border: 1px solid #f8beab;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #fdede8;
+}
+
+.status-item-disabled {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #919ba5;
+    background-color: #c0c6cc;
+}
+
+.footer-seat-map {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-size: 15px;
+    color: #4a4a4a;
+}
+
+.footer-seat-map > div {
+    flex: 1;
+}
+
+.info-ticket {
+    padding-bottom: 10px;
+}
+
+.arrow-next {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    font-size: 24px;
+    float: right;
+}
+
+@media only screen and (max-width: 600px) {
+    .bus-option-label {
+        width: 300px;
+        font-size: 14px;
+    }
+
+    .bus-option .bus-option-header {
+        font-size: 22px;
+    }
+
+    .utilities {
+        margin-top: 4px;
+    }
+
+    .time-line-content {
+        width: 295px;
+    }
+
+    .seat-map-content-wrap {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .seat-map-content {
+        min-width: 295px;
+    }
+
+    .seat-map-table-content li {
+        padding: 20px;
+    }
+    .active {
+        border-bottom: 2px solid var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .hide-mb {
+        display: none;
+    }
+
+    .status-item-text {
+        font-size: 14px;
+    }
+
+    .footer-seat-map {
+        flex-direction: column;
+    }
+
+    .info-ticket {
+        padding-bottom: 20px;
+    }
+
+    .seat-map-table-content > ul ~ ul {
+        padding: 0;
+    }
 }

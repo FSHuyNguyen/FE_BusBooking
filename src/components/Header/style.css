@@ -233,8 +233,8 @@ a {
         position: absolute;
         display: block;
         top: 0px;
-        right: 15px;
-        padding: 15px 5px;
+        right: 0;
+        padding: 15px 0;
     }
 
     .btn__remove-label {

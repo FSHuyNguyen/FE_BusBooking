@@ -242,7 +242,7 @@ const Search = () => {
                         />
                     </div>
                 </div>
-                <Button to="/search" onClick={handleSubmit} buttonStyle={'search-btn'}>
+                <Button onClick={handleSubmit} buttonStyle={'search-btn'}>
                     <i className="bx bx-search"></i>TÌM NGAY
                 </Button>
             </div>

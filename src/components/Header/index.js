@@ -39,8 +39,8 @@ const Header = () => {
 
     return (
         <>
-            <header id="header" className="header">
-                <div className="grid container">
+            <header id="header" className="header container">
+                <div className="grid">
                     <div className="navbar">
                         <div className="navbar__logo">
                             <Link to="/" className="navbar__logo-link navbar__logo-img">

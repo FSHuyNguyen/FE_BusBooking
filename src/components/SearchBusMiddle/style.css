@@ -67,3 +67,71 @@ select.custom-select:focus {
     padding: 0 16px;
     color: var(--text-color);
 }
+
+@media only screen and (max-width: 1024px) {
+    .search__bus-content,
+    .step-line-container,
+    .search__bus-heading {
+        width: 730px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .search__bus-content,
+    .step-line-container,
+    .search__bus-heading {
+        width: 90%;
+    }
+
+    .step-line {
+        position: relative;
+        font-family: SFProText;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        font-weight: 600;
+        padding-left: 15px;
+        padding-right: 15px;
+        height: 32px;
+        font-size: 10px;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    .custom-select.filter-select {
+        width: 100px;
+        margin-right: 10px;
+    }
+
+    .search__bus-content-filter {
+        justify-content: center;
+    }
+
+    .trip-info {
+        font-size: 14px;
+        font-weight: 400;
+        padding: 0;
+    }
+
+    .search__heading-place {
+        font-size: 20px;
+    }
+
+    .search__heading-time {
+        font-size: 14px;
+    }
+
+    .next-title > span {
+        font-size: 10px;
+    }
+
+    .bus-option .bus-option-header {
+        font-size: 22px;
+    }
+
+    .utilities {
+        margin-top: 4px;
+    }
+}

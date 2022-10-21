@@ -41,7 +41,7 @@ const SearchBusMiddle = () => {
                             <option value="18h-24h">18h - 24h</option>
                         </select>
                     </div>
-                    <h2 className="trip-info">Chọn giờ lên xe đi Đà Lạt từ TP.Hồ Chí Minh phù hợp</h2>
+                    <h2 className="trip-info">Chọn giờ lên xe đi Đà Lạt từ TP.Hồ Chí Minh</h2>
                 </div>
                 <BusOption />
             </div>

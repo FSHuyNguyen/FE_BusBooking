@@ -6,7 +6,7 @@ import SearchBusMiddle from '../SearchBusMiddle';
 
 const SearchContainer = () => {
     return (
-        <div className="container">
+        <div>
             <div className="search_bus">
                 <div className="grid">
                     <SearchBusHeading />

@@ -303,8 +303,8 @@
 
 .search__input--disabled {
     color: grey;
-    pointer-events: none;
     background: grey;
+    pointer-events: none;
     opacity: 0.1;
     opacity: 0.1 !important;
     border: 1px solid #ccc;
@@ -328,52 +328,6 @@
 
 .react-date-picker__wrapper {
     border: none;
-}
-
-@media only screen and (max-width: 1024px) {
-    .select__box-search {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .search__middle {
-        width: 80%;
-    }
-
-    .data_list_search-from {
-        min-width: 250%;
-        margin-left: 50px;
-    }
-
-    .data_list_search-to {
-        min-width: 280%;
-    }
-
-    .search-btn {
-        top: 238px;
-    }
-
-    .data_list_search {
-        min-width: 260%;
-        margin-left: 14px;
-    }
-
-    .list-item-from {
-        padding: 8px 11px;
-    }
-
-    .statistic-list {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .statistic-item {
-        width: 100%;
-    }
 }
 
 .react-datepicker-popper {
@@ -408,6 +362,53 @@
     margin: 0.166rem;
     font-size: 1.8rem;
     line-height: 3rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    .select__box-search {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search__middle {
+        width: 80%;
+    }
+
+    .data_list_search-from {
+        min-width: 250%;
+        margin-left: 50px;
+    }
+
+    .data_list_search-to {
+        min-width: 280%;
+    }
+
+    .search-btn {
+        top: 246px;
+        height: 20%;
+    }
+
+    .data_list_search {
+        min-width: 260%;
+        margin-left: 14px;
+    }
+
+    .list-item-from {
+        padding: 8px 11px;
+    }
+
+    .statistic-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .statistic-item {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -448,6 +449,8 @@
     .search-btn {
         top: 260px;
         right: 24px;
+        height: 16%;
+        width: 123px;
     }
 
     .data_list_search-from {
@@ -484,7 +487,7 @@
         text-align: center;
         margin: 0.166rem;
         font-size: 1.6rem;
-        line-height: 1.6rem;
+        line-height: 3.5rem;
     }
 
     .react-datepicker__current-month {

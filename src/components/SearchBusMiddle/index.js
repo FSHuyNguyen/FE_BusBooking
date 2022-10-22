@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '~/components/SearchBusMiddle/style.css';
 import BusOption from '../BusOption';
 
-const SearchBusMiddle = () => {
+const SearchBusMiddle = ({ List }) => {
     const { Price, setPrice } = useState('');
     const { TypeBus, setTypeBus } = useState('');
     const { TimeStart, setTimeStart } = useState('');
@@ -43,7 +43,7 @@ const SearchBusMiddle = () => {
                     </div>
                     <h2 className="trip-info">Chọn giờ lên xe đi Đà Lạt từ TP.Hồ Chí Minh</h2>
                 </div>
-                <BusOption />
+                <BusOption ListItem={List} />
             </div>
         </div>
     );

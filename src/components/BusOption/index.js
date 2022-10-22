@@ -5,17 +5,9 @@ import '~/components/BusOption/style.css';
 import Seat from '../Seat';
 import ContentLoader from 'react-content-loader';
 
-const BusOption = () => {
+const BusOption = ({ ListItem }) => {
     const [typeTicket, setTypeTicket] = useState([]);
     const [ticketSelect, setTicketSelect] = useState({});
-    useEffect(() => {
-        const getTypeTicket = async () => {
-            const res = await axios.get(process.env.REACT_APP_BASE_URL + '/typeticket');
-
-            setTypeTicket(res.data.type_ticket);
-        };
-        getTypeTicket();
-    }, []);
 
     const numberFormat = (value) =>
         new Intl.NumberFormat('vn-IN', {
@@ -26,15 +18,15 @@ const BusOption = () => {
     const handleSelect = (event) => setTicketSelect({ [event.target.id]: !ticketSelect[event.target.id] });
     return (
         <>
-            {(typeTicket.length === 0 && (
+            {(ListItem.length === 0 && (
                 <>
                     <ContentLoader
-                        speed={4}
+                        speed={2}
                         width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
-                        backgroundColor="#f3f3f3"
-                        foregroundColor="#ecebeb"
+                        backgroundColor="#f5f5f5"
+                        foregroundColor="#ccc"
                     >
                         <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
@@ -44,12 +36,12 @@ const BusOption = () => {
                         <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                     <ContentLoader
-                        speed={4}
+                        speed={2}
                         width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
-                        backgroundColor="#f3f3f3"
-                        foregroundColor="#ecebeb"
+                        backgroundColor="#f5f5f5"
+                        foregroundColor="#ccc"
                     >
                         <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
@@ -59,12 +51,12 @@ const BusOption = () => {
                         <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                     <ContentLoader
-                        speed={4}
+                        speed={2}
                         width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
-                        backgroundColor="#f3f3f3"
-                        foregroundColor="#ecebeb"
+                        backgroundColor="#f5f5f5"
+                        foregroundColor="#ccc"
                     >
                         <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
@@ -74,12 +66,12 @@ const BusOption = () => {
                         <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                     <ContentLoader
-                        speed={4}
+                        speed={2}
                         width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
-                        backgroundColor="#f3f3f3"
-                        foregroundColor="#ecebeb"
+                        backgroundColor="#f5f5f5"
+                        foregroundColor="#ccc"
                     >
                         <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
@@ -89,12 +81,12 @@ const BusOption = () => {
                         <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                     <ContentLoader
-                        speed={4}
+                        speed={2}
                         width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
-                        backgroundColor="#f3f3f3"
-                        foregroundColor="#ecebeb"
+                        backgroundColor="#f5f5f5"
+                        foregroundColor="#ccc"
                     >
                         <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
@@ -105,7 +97,7 @@ const BusOption = () => {
                     </ContentLoader>
                 </>
             )) ||
-                typeTicket.map((item) => (
+                ListItem.map((item) => (
                     <div id={item.id} className={`bus-option ${ticketSelect[item.id] ? 'selected' : ''}`} key={item.id}>
                         <div className="bus-option-header">
                             {moment(`${item.time_start}`, 'HH:mm:ss').format('HH:mm')}

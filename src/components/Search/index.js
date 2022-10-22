@@ -7,23 +7,31 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Image from '../Image';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
+import moment, { locale } from 'moment/moment';
 
 const Search = () => {
+    const [dataSearch, setDataSearch] = useState([]);
     const [showResultFrom, setShowResultFrom] = useState(false);
     const [showResultTo, setShowResultTo] = useState(false);
-    const [inputFrom, setInputFrom] = useState('');
-    const [inputTo, setInputTo] = useState('');
+    const [roundTrip, setRoundTrip] = useState(false);
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [inputFrom, setInputFrom] = useState({
+        id: '',
+        name: '',
+    });
+    const [inputTo, setInputTo] = useState({
+        id: '',
+        name: '',
+    });
     const rotateRef = useRef(null);
     const navigate = useNavigate();
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
     const InputFrom = forwardRef(({ value, onClick }, ref) => (
         <button className={`search-date__field search__input_form search-input__field `} onClick={onClick} ref={ref}>
             <span className="date-select">{value}</span>
         </button>
     ));
-
     const InputTo = forwardRef(({ value, onClick }, ref) => (
         <button
             className={`search-date__field search__input_form search-input__field ${
@@ -36,7 +44,6 @@ const Search = () => {
         </button>
     ));
 
-    const [dataSearch, setDataSearch] = useState([]);
     useEffect(() => {
         const fetchApiDeal = async () => {
             const res = await axios.get(process.env.REACT_APP_BASE_URL + '/station');
@@ -45,14 +52,20 @@ const Search = () => {
         fetchApiDeal();
     }, []);
 
-    const [roundTrip, setRoundTrip] = useState(false);
-
-    const handleChooseFrom = (value) => {
-        setInputFrom(value);
+    const handleChooseFrom = (id_val, name_val) => {
+        setInputFrom({
+            id: id_val,
+            name: name_val,
+        });
+        setShowResultFrom(false);
     };
 
-    const handleChooseTo = (value) => {
-        setInputTo(value);
+    const handleChooseTo = (id_val, name_val) => {
+        setInputTo({
+            id: id_val,
+            name: name_val,
+        });
+        setShowResultTo(false);
     };
 
     const handleRoundTrip = () => {
@@ -66,9 +79,14 @@ const Search = () => {
         setInputTo(inputFrom);
     };
 
+    const dateStart = startDate.toLocaleDateString();
+
     const handleSubmit = () => {
         inputFrom && inputTo
-            ? navigate('/search')
+            ? navigate({
+                  pathname: '/search',
+                  search: `?from=${inputFrom.name}&idfrom=${inputFrom.id}&to=${inputTo.name}&idto=${inputTo.id}&date=${dateStart}`,
+              })
             : Notify.warning('Vui lòng nhập điểm đi và điểm đến!', {
                   zindex: `999999`,
                   useIcon: false,
@@ -80,7 +98,6 @@ const Search = () => {
                   fontSize: '16px',
               });
     };
-
     return (
         <div className="search__middle">
             <div className="roundtrip-checkbox-container">
@@ -117,10 +134,10 @@ const Search = () => {
                                         {dataSearch &&
                                             dataSearch.map(
                                                 (item) =>
-                                                    item.point !== inputTo && (
+                                                    item.point !== inputTo.name && (
                                                         <li className="place-list-item" key={item.id}>
                                                             <button
-                                                                onClick={() => handleChooseFrom(item.point)}
+                                                                onClick={() => handleChooseFrom(item.id, item.point)}
                                                                 className="list-item-from"
                                                             >
                                                                 {item.point}
@@ -138,12 +155,12 @@ const Search = () => {
                                     Từ
                                 </label>
                                 <input
-                                    id="inputFrom"
+                                    id={inputFrom.id}
                                     autoComplete="off"
                                     className="search-input__field"
                                     type="text"
                                     placeholder="Từ nơi nào"
-                                    value={inputFrom}
+                                    value={inputFrom.name}
                                     onChange={(e) => handleChooseFrom(e.target.value)}
                                     onFocus={() => setShowResultFrom(true)}
                                 />
@@ -171,10 +188,10 @@ const Search = () => {
                                             {dataSearch &&
                                                 dataSearch.map(
                                                     (data) =>
-                                                        data.point !== inputFrom && (
+                                                        data.point !== inputFrom.name && (
                                                             <li className="place-list-item" key={data.id}>
                                                                 <button
-                                                                    onClick={() => handleChooseTo(data.point)}
+                                                                    onClick={() => handleChooseTo(data.id, data.point)}
                                                                     className="list-item-to"
                                                                 >
                                                                     {data.point}
@@ -201,11 +218,12 @@ const Search = () => {
                                     Đến
                                 </label>
                                 <input
-                                    id="inputTo"
+                                    id={inputTo.id}
+                                    autoComplete="off"
                                     className="search-input__field"
                                     type="text"
                                     placeholder="Đến nơi nào"
-                                    value={inputTo}
+                                    value={inputTo.name}
                                     onChange={(e) => handleChooseTo(e.target.value)}
                                     onFocus={() => setShowResultTo(true)}
                                 />

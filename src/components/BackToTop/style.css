@@ -20,7 +20,7 @@
     justify-content: center;
 }
 
-.to-top.active {
+.to-top.top-active {
     bottom: 32px;
     pointer-events: auto;
     opacity: 1;

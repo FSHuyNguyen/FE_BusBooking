@@ -24,60 +24,89 @@ const BusOption = () => {
         }).format(value);
 
     const handleSelect = (event) => setTicketSelect({ [event.target.id]: !ticketSelect[event.target.id] });
-
     return (
         <>
             {(typeTicket.length === 0 && (
                 <>
                     <ContentLoader
                         speed={4}
-                        width={700}
+                        width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
                         backgroundColor="#f3f3f3"
                         foregroundColor="#ecebeb"
                     >
-                        <rect x="20" y="20" rx="0" ry="0" width="658" height="22" />
+                        <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
                         <rect x="205" y="122" rx="0" ry="0" width="2" height="0" />
-                        <rect x="20" y="60" rx="16" ry="16" width="340" height="26" />
-                        <rect x="22" y="108" rx="0" ry="0" width="658" height="80" />
-                        <rect x="26" y="123" rx="0" ry="0" width="427" height="42" />
+                        <rect x="20" y="60" rx="16" ry="16" width="calc(40%)" height="26" />
+                        <rect x="22" y="108" rx="0" ry="0" width="calc(90%)" height="80" />
+                        <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                     <ContentLoader
                         speed={4}
-                        width={700}
+                        width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
                         backgroundColor="#f3f3f3"
                         foregroundColor="#ecebeb"
                     >
-                        <rect x="20" y="20" rx="0" ry="0" width="658" height="22" />
+                        <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
                         <rect x="205" y="122" rx="0" ry="0" width="2" height="0" />
-                        <rect x="20" y="60" rx="16" ry="16" width="340" height="26" />
-                        <rect x="22" y="108" rx="0" ry="0" width="658" height="80" />
-                        <rect x="26" y="123" rx="0" ry="0" width="427" height="42" />
+                        <rect x="20" y="60" rx="16" ry="16" width="calc(40%)" height="26" />
+                        <rect x="22" y="108" rx="0" ry="0" width="calc(90%)" height="80" />
+                        <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                     <ContentLoader
                         speed={4}
-                        width={700}
+                        width={'100%'}
                         height={222}
                         viewBox="0 0 700 222"
                         backgroundColor="#f3f3f3"
                         foregroundColor="#ecebeb"
                     >
-                        <rect x="20" y="20" rx="0" ry="0" width="658" height="22" />
+                        <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
                         <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
                         <rect x="205" y="122" rx="0" ry="0" width="2" height="0" />
-                        <rect x="20" y="60" rx="16" ry="16" width="340" height="26" />
-                        <rect x="22" y="108" rx="0" ry="0" width="658" height="80" />
-                        <rect x="26" y="123" rx="0" ry="0" width="427" height="42" />
+                        <rect x="20" y="60" rx="16" ry="16" width="calc(40%)" height="26" />
+                        <rect x="22" y="108" rx="0" ry="0" width="calc(90%)" height="80" />
+                        <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
+                    </ContentLoader>
+                    <ContentLoader
+                        speed={4}
+                        width={'100%'}
+                        height={222}
+                        viewBox="0 0 700 222"
+                        backgroundColor="#f3f3f3"
+                        foregroundColor="#ecebeb"
+                    >
+                        <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
+                        <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
+                        <rect x="205" y="122" rx="0" ry="0" width="2" height="0" />
+                        <rect x="20" y="60" rx="16" ry="16" width="calc(40%)" height="26" />
+                        <rect x="22" y="108" rx="0" ry="0" width="calc(90%)" height="80" />
+                        <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
+                    </ContentLoader>
+                    <ContentLoader
+                        speed={4}
+                        width={'100%'}
+                        height={222}
+                        viewBox="0 0 700 222"
+                        backgroundColor="#f3f3f3"
+                        foregroundColor="#ecebeb"
+                    >
+                        <rect x="20" y="20" rx="0" ry="0" width="calc(90%)" height="22" />
+                        <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
+                        <rect x="205" y="122" rx="0" ry="0" width="2" height="0" />
+                        <rect x="20" y="60" rx="16" ry="16" width="calc(40%)" height="26" />
+                        <rect x="22" y="108" rx="0" ry="0" width="calc(90%)" height="80" />
+                        <rect x="26" y="123" rx="0" ry="0" width="calc(40%)" height="42" />
                     </ContentLoader>
                 </>
             )) ||
                 typeTicket.map((item) => (
-                    <div className={`bus-option ${ticketSelect[item.id] ? 'selected' : ''}`} key={item.id}>
+                    <div id={item.id} className={`bus-option ${ticketSelect[item.id] ? 'selected' : ''}`} key={item.id}>
                         <div className="bus-option-header">
                             {moment(`${item.time_start}`, 'HH:mm:ss').format('HH:mm')}
                             <svg width="26" height="26" fill="none">
@@ -117,7 +146,7 @@ const BusOption = () => {
                             <span className="dot"></span>
                             <span>{item.type_bus}</span>
                             <span className="dot"></span>
-                            Còn 11 chỗ
+                            {(item.type_bus === 'Giường' && 'Còn 24 chỗ trống') || 'Còn 22 chỗ trống'}
                         </div>
                         <div className="bus-line-content">
                             <div className="bus-line-list">
@@ -158,7 +187,15 @@ const BusOption = () => {
                             </div>
                         </div>
 
-                        {ticketSelect[item.id] ? <Seat BusId={item.bus_id} /> : null}
+                        {ticketSelect[item.id] ? (
+                            <Seat
+                                BusId={item.bus_id}
+                                From={item.from}
+                                To={item.to}
+                                timeStart={item.time_start}
+                                timeEnd={item.time_end}
+                            />
+                        ) : null}
                     </div>
                 ))}
         </>

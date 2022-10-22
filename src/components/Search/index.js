@@ -139,9 +139,10 @@ const Search = () => {
                                 </label>
                                 <input
                                     id="inputFrom"
+                                    autoComplete="off"
                                     className="search-input__field"
-                                    type="input"
-                                    placeholder="Từ nơi nào đến"
+                                    type="text"
+                                    placeholder="Từ nơi nào"
                                     value={inputFrom}
                                     onChange={(e) => handleChooseFrom(e.target.value)}
                                     onFocus={() => setShowResultFrom(true)}
@@ -202,7 +203,7 @@ const Search = () => {
                                 <input
                                     id="inputTo"
                                     className="search-input__field"
-                                    type="input"
+                                    type="text"
                                     placeholder="Đến nơi nào"
                                     value={inputTo}
                                     onChange={(e) => handleChooseTo(e.target.value)}

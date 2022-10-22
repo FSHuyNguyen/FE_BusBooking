@@ -28,11 +28,11 @@
 .bus-option-label {
     color: var(--text-color);
     margin: 16px 0 16px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     width: 340px;
     border-radius: 16px;
-    padding: 5px 12px;
+    padding: 5px 14px;
     display: flex;
     justify-content: space-between;
     background-color: rgba(99, 114, 128, 0.1);
@@ -133,6 +133,7 @@
     align-self: center;
     width: 100%;
     position: relative;
+    border-bottom: 1px solid #ebedee;
 }
 
 .title {
@@ -141,6 +142,64 @@
     font-size: 14px;
     color: var(--primary-color);
     font-weight: 700;
+}
+
+table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.time-td {
+    display: flex;
+    align-items: center;
+}
+
+.sub-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+.desc {
+    font-size: 13px;
+    color: #637280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.table > thead > tr > td {
+    line-height: 2.4rem;
+    vertical-align: top;
+}
+
+.time {
+    margin-left: 8px;
+    font-size: 15px;
+    color: #4a4a4a;
+    width: 130px;
+    text-align: center;
+}
+
+.time-td > i {
+    width: 16px;
+    font-size: 20px;
+    height: 20px;
+    color: #4a4a4a;
+}
+
+.time-map {
+    display: none;
 }
 
 /* Seat */

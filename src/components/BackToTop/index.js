@@ -21,7 +21,7 @@ const BackToTop = () => {
     };
 
     return (
-        <Link onClick={handleBackTop} className={`to-top ${backTop ? 'active' : ''}`}>
+        <Link onClick={handleBackTop} className={`to-top ${backTop ? 'top-active' : ''}`}>
             <i className="to-top-icon bx bxs-chevron-up"></i>
         </Link>
     );

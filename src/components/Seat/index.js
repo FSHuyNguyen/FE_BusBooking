@@ -2,13 +2,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import Button from '../Button';
+import FiveTableSeat from '../FiveTableSeat';
+import FourTableSeat from '../FourTableSeat';
+import OneTableSeat from '../OneTableSeat';
+import SixTableSeat from '../SixTableSeat';
+import ThreeTableSeat from '../ThreeTableSeat';
+import TwoTableSeat from '../TwoTableSeat';
 
-const Seat = ({ BusId }) => {
+const Seat = ({ ...props }) => {
     const [dataSeat, setDataSeat] = useState([]);
     const [changeTang, setchangeTang] = useState(true);
+    const [showTrip, setShowTrip] = useState(false);
     useEffect(() => {
         const getSeatbyBusId = async () => {
-            const res = await axios.get(process.env.REACT_APP_BASE_URL + '/seat/' + BusId);
+            const res = await axios.get(process.env.REACT_APP_BASE_URL + '/seat/' + props.BusId);
 
             setDataSeat(res.data.all_seat);
         };
@@ -18,13 +25,18 @@ const Seat = ({ BusId }) => {
     const handleChangeTang = () => {
         setchangeTang(!changeTang);
     };
+
+    const handleShowTrip = () => {
+        setShowTrip(!showTrip);
+    };
+
     return (
         <>
             {(dataSeat.length === 0 && (
                 <>
                     <ContentLoader
                         speed={2}
-                        width={655}
+                        width={'100%'}
                         height={564}
                         viewBox="0 0 655 564"
                         backgroundColor="#f5f5f5"
@@ -39,10 +51,28 @@ const Seat = ({ BusId }) => {
                 </>
             )) || (
                 <div>
-                    <div className="time-line-content" style={{ display: 'flex' }}>
-                        <div className="title-content">
+                    <div className="time-line-content">
+                        <div className="title-content" onClick={handleShowTrip}>
                             <p className="title">LỊCH TRÌNH CHUYẾN ĐI</p>
                         </div>
+                        {props.From === 'Ho Chi Minh' && props.To === 'Da Lat' && (
+                            <OneTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Ho Chi Minh' && props.To === 'MaDaGui' && (
+                            <TwoTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Ho Chi Minh' && props.To === 'Bao Loc' && (
+                            <ThreeTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'MaDaGui' && props.To === 'Bao Loc' && (
+                            <FourTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'MaDaGui' && props.To === 'Da Lat' && (
+                            <FiveTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Bao Loc' && props.To === 'Da Lat' && (
+                            <SixTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
                     </div>
                     <div className="seat-map-content" style={{ display: 'flex' }}>
                         <div className="seat-map-content-wrap">

@@ -1,8 +1,8 @@
 import moment from 'moment/moment';
 import React from 'react';
-import { Ma_DL } from '~/Data/RouteInformation';
+import { BL_Ma } from '~/Data/RouteInformation';
 
-const FiveTableSeat = ({ ShowTrip, Props }) => {
+const TenTableSeat = ({ ShowTrip, Props }) => {
     return (
         <table className={`${!ShowTrip ? 'time-map' : ''} table`}>
             <thead>
@@ -18,15 +18,8 @@ const FiveTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{Ma_DL[0].data.location}</span>
-                        <p className="desc">{Ma_DL[0].data.address}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="time-td"></td>
-                    <td className="sub-title">
-                        <span>{Ma_DL[1].data.location}</span>
-                        <p className="desc">{Ma_DL[1].data.address}</p>
+                        <span>{BL_Ma[0].data.location}</span>
+                        <p className="desc">{BL_Ma[0].data.address}</p>
                     </td>
                 </tr>
                 <tr>
@@ -35,8 +28,8 @@ const FiveTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{Ma_DL[2].data.location}</span>
-                        <p className="desc">{Ma_DL[2].data.address}</p>
+                        <span>{BL_Ma[1].data.location}</span>
+                        <p className="desc">{BL_Ma[1].data.address}</p>
                     </td>
                 </tr>
             </tbody>
@@ -44,4 +37,4 @@ const FiveTableSeat = ({ ShowTrip, Props }) => {
     );
 };
 
-export default FiveTableSeat;
+export default TenTableSeat;

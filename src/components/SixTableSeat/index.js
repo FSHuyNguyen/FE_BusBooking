@@ -7,17 +7,15 @@ const SixTableSeat = ({ ShowTrip, Props }) => {
         <table className={`${!ShowTrip ? 'time-map' : ''} table`}>
             <thead>
                 <tr className="sub-title">
-                    <td>Thời gian</td>
-                    <td>Khởi hành</td>
+                    <td className="sub-title-time">Thời gian</td>
+                    <td className="sub-title-station">Khởi hành</td>
                 </tr>
             </thead>
             <tbody className="table-body">
                 <tr>
                     <td className="time-td">
                         <i className="bx bxs-map"></i>
-                        <span className="time">
-                            21/10/2022 {moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}
-                        </span>
+                        <span className="time">{moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
                         <span>{BL_DL[0].data.location}</span>
@@ -27,9 +25,7 @@ const SixTableSeat = ({ ShowTrip, Props }) => {
                 <tr>
                     <td className="time-td">
                         <i className="bx bxs-map-pin"></i>
-                        <span className="time">
-                            21/10/2022 {moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}
-                        </span>
+                        <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
                         <span>{BL_DL[1].data.location}</span>

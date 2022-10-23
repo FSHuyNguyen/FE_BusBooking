@@ -2,17 +2,24 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import Button from '../Button';
+import EightTableSeat from '../EightTableSeat';
+import ElevenTableSeat from '../ElevenTableSeat';
 import FiveTableSeat from '../FiveTableSeat';
 import FourTableSeat from '../FourTableSeat';
+import NineTableSeat from '../NineTableSeat';
 import OneTableSeat from '../OneTableSeat';
+import SevenTableSeat from '../SevenTableSeat';
 import SixTableSeat from '../SixTableSeat';
+import TenTableSeat from '../TenTableSeat';
 import ThreeTableSeat from '../ThreeTableSeat';
+import TwelveTableSeat from '../TwelveTableSeat';
 import TwoTableSeat from '../TwoTableSeat';
 
 const Seat = ({ ...props }) => {
     const [dataSeat, setDataSeat] = useState([]);
     const [changeTang, setchangeTang] = useState(true);
     const [showTrip, setShowTrip] = useState(false);
+    const [statusSeat, setStatusSeat] = useState(false);
     useEffect(() => {
         const getSeatbyBusId = async () => {
             const res = await axios.get(process.env.REACT_APP_BASE_URL + '/seat/' + props.BusId);
@@ -29,6 +36,7 @@ const Seat = ({ ...props }) => {
     const handleShowTrip = () => {
         setShowTrip(!showTrip);
     };
+    console.log(dataSeat);
     return (
         <>
             {(dataSeat.length === 0 && (
@@ -72,6 +80,24 @@ const Seat = ({ ...props }) => {
                         {props.From === 'Bao Loc' && props.To === 'Da Lat' && (
                             <SixTableSeat ShowTrip={showTrip} Props={props} />
                         )}
+                        {props.From === 'Da Lat' && props.To === 'Ho Chi Minh' && (
+                            <SevenTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Da Lat' && props.To === 'Bao Loc' && (
+                            <EightTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Da Lat' && props.To === 'MaDaGui' && (
+                            <NineTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Bao Loc' && props.To === 'MaDaGui' && (
+                            <TenTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'Bao Loc' && props.To === 'Ho Chi Minh' && (
+                            <ElevenTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
+                        {props.From === 'MaDaGui' && props.To === 'Ho Chi Minh' && (
+                            <TwelveTableSeat ShowTrip={showTrip} Props={props} />
+                        )}
                     </div>
                     <div className="seat-map-content" style={{ display: 'flex' }}>
                         <div className="seat-map-content-wrap">
@@ -89,7 +115,7 @@ const Seat = ({ ...props }) => {
                                         {dataSeat.map(
                                             (li) =>
                                                 li.type_seat === '0' && (
-                                                    <li className="" key={li.id}>
+                                                    <li id={li.id} className="" key={li.id}>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="42"
@@ -99,7 +125,7 @@ const Seat = ({ ...props }) => {
                                                             pos="0"
                                                         >
                                                             <g fill="none" fillRule="evenodd">
-                                                                <g className="active">
+                                                                <g className={`active`}>
                                                                     <path d="M8.625.5c-3.038 0-5.5 2.462-5.5 5.5v27.875c0 .828.672 1.5 1.5 1.5h32.75c.828 0 1.5-.672 1.5-1.5V6c0-3.038-2.462-5.5-5.5-5.5H8.625zM5.75 35.5V38c0 1.933 1.567 3.5 3.5 3.5h23.5c1.933 0 3.5-1.567 3.5-3.5v-2.5H5.75z"></path>
                                                                     <rect
                                                                         width="5.125"
@@ -137,7 +163,7 @@ const Seat = ({ ...props }) => {
                                         {dataSeat.map(
                                             (li) =>
                                                 li.type_seat === '1' && (
-                                                    <li key={li.id}>
+                                                    <li id={li.id} key={li.id}>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="42"
@@ -147,7 +173,10 @@ const Seat = ({ ...props }) => {
                                                             pos="0"
                                                         >
                                                             <g fill="none" fillRule="evenodd">
-                                                                <g className="active">
+                                                                <g
+                                                                    onClick={(e) => setStatusSeat(!statusSeat)}
+                                                                    className={`active`}
+                                                                >
                                                                     <path d="M8.625.5c-3.038 0-5.5 2.462-5.5 5.5v27.875c0 .828.672 1.5 1.5 1.5h32.75c.828 0 1.5-.672 1.5-1.5V6c0-3.038-2.462-5.5-5.5-5.5H8.625zM5.75 35.5V38c0 1.933 1.567 3.5 3.5 3.5h23.5c1.933 0 3.5-1.567 3.5-3.5v-2.5H5.75z"></path>
                                                                     <rect
                                                                         width="5.125"

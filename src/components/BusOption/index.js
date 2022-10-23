@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import '~/components/BusOption/style.css';
 import Seat from '../Seat';
 import ContentLoader from 'react-content-loader';
+import { useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const BusOption = ({ ListItem }) => {
-    const [typeTicket, setTypeTicket] = useState([]);
+const BusOption = ({ ListItem, filter }) => {
     const [ticketSelect, setTicketSelect] = useState({});
 
     const numberFormat = (value) =>
@@ -16,6 +17,7 @@ const BusOption = ({ ListItem }) => {
         }).format(value);
 
     const handleSelect = (event) => setTicketSelect({ [event.target.id]: !ticketSelect[event.target.id] });
+
     return (
         <>
             {(ListItem.length === 0 && (
@@ -97,8 +99,8 @@ const BusOption = ({ ListItem }) => {
                     </ContentLoader>
                 </>
             )) ||
-                ListItem.map((item) => (
-                    <div id={item.id} className={`bus-option ${ticketSelect[item.id] ? 'selected' : ''}`} key={item.id}>
+                ListItem.map((item, index) => (
+                    <div id={item.id} className={`bus-option ${ticketSelect[item.id] ? 'selected' : ''}`} key={index}>
                         <div className="bus-option-header">
                             {moment(`${item.time_start}`, 'HH:mm:ss').format('HH:mm')}
                             <svg width="26" height="26" fill="none">

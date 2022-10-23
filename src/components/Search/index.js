@@ -80,9 +80,8 @@ const Search = () => {
     };
 
     const dateStart = startDate.toLocaleDateString();
-
     const handleSubmit = () => {
-        inputFrom && inputTo
+        inputFrom.id && inputTo.id
             ? navigate({
                   pathname: '/search',
                   search: `?from=${inputFrom.name}&idfrom=${inputFrom.id}&to=${inputTo.name}&idto=${inputTo.id}&date=${dateStart}`,

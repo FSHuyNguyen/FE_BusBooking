@@ -4,7 +4,6 @@ import '~/components/BackToTop/style.css';
 
 const BackToTop = () => {
     const [backTop, setBackTop] = useState(false);
-
     useEffect(() => {
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 100) {
@@ -21,9 +20,9 @@ const BackToTop = () => {
     };
 
     return (
-        <Link onClick={handleBackTop} className={`to-top ${backTop ? 'top-active' : ''}`}>
+        <div onClick={handleBackTop} className={`to-top ${backTop ? 'top-active' : ''}`}>
             <i className="to-top-icon bx bxs-chevron-up"></i>
-        </Link>
+        </div>
     );
 };
 

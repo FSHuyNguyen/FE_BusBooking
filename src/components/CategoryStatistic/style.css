@@ -4,7 +4,6 @@
 .category-statistic {
     width: 100%;
     padding: 30px 0;
-    background-color: #f2f2f2;
 }
 
 .statistic-heading {
@@ -35,15 +34,27 @@
 
 .statistic-item__icon {
     padding-right: 20px;
+    position: relative;
     font-size: 3rem;
     color: var(--primary-color);
+}
+
+.statistic-item__icon::after {
+    content: '';
+    position: absolute;
+    top: -4%;
+    left: -14%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--primary-color);
 }
 
 .statistic-item__heading {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .statistic-item__description {

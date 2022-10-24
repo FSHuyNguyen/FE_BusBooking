@@ -7,6 +7,7 @@ import ElevenTableSeat from '../ElevenTableSeat';
 import FiveTableSeat from '../FiveTableSeat';
 import FourTableSeat from '../FourTableSeat';
 import NineTableSeat from '../NineTableSeat';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import OneTableSeat from '../OneTableSeat';
 import SevenTableSeat from '../SevenTableSeat';
 import SixTableSeat from '../SixTableSeat';
@@ -19,7 +20,11 @@ const Seat = ({ ...props }) => {
     const [dataSeat, setDataSeat] = useState([]);
     const [changeTang, setchangeTang] = useState(true);
     const [showTrip, setShowTrip] = useState(false);
-    const [statusSeat, setStatusSeat] = useState(false);
+    const [totalSeat, setTotalSeat] = useState({
+        value: '',
+    });
+    const [chooseSeat, setChooseSeat] = useState({});
+
     useEffect(() => {
         const getSeatbyBusId = async () => {
             const res = await axios.get(process.env.REACT_APP_BASE_URL + '/seat/' + props.BusId);
@@ -36,7 +41,29 @@ const Seat = ({ ...props }) => {
     const handleShowTrip = () => {
         setShowTrip(!showTrip);
     };
-    console.log(dataSeat);
+
+    const handleSelectSeat = (event) => {
+        if (Object.keys(chooseSeat).length < 5 && !chooseSeat[event.target.id]) {
+            setChooseSeat({ ...chooseSeat, [event.target.id]: true });
+            // setTotalSeat({ ...totalSeat, value: event.target.dataset.name });
+        } else if (chooseSeat[event.target.id]) {
+            delete chooseSeat[event.target.id];
+            setChooseSeat({ ...chooseSeat });
+            // setTotalSeat({ ...totalSeat, value: event.target.dataset.name });
+        } else {
+            Notify.warning('Số lượng vé được đặt tối đa là 5!', {
+                zindex: `999999`,
+                useIcon: false,
+                cssAnimationStyle: 'from-right',
+                cssAnimationDuration: 600,
+                distance: '30px',
+                showOnlyTheLastOne: true,
+                clickToClose: true,
+                fontSize: '16px',
+            });
+        }
+    };
+    // console.log(totalSeat);
     return (
         <>
             {(dataSeat.length === 0 && (
@@ -113,9 +140,15 @@ const Seat = ({ ...props }) => {
                                 <div className="seat-map-table-content">
                                     <ul className={`seat-map-table-content ${!changeTang && 'hide-mb'}`}>
                                         {dataSeat.map(
-                                            (li) =>
+                                            (li, index) =>
                                                 li.type_seat === '0' && (
-                                                    <li id={li.id} className="" key={li.id}>
+                                                    <li
+                                                        className="seat-item"
+                                                        key={index}
+                                                        id={li.id}
+                                                        onClick={handleSelectSeat}
+                                                        data-name={li.name}
+                                                    >
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="42"
@@ -124,8 +157,14 @@ const Seat = ({ ...props }) => {
                                                             className="seat s-disabled"
                                                             pos="0"
                                                         >
-                                                            <g fill="none" fillRule="evenodd">
-                                                                <g className={`active`}>
+                                                            <g
+                                                                fill="none"
+                                                                fillRule="evenodd"
+                                                                className={`${
+                                                                    !chooseSeat[li.id] ? 'active' : 'selecting'
+                                                                }`}
+                                                            >
+                                                                <g>
                                                                     <path d="M8.625.5c-3.038 0-5.5 2.462-5.5 5.5v27.875c0 .828.672 1.5 1.5 1.5h32.75c.828 0 1.5-.672 1.5-1.5V6c0-3.038-2.462-5.5-5.5-5.5H8.625zM5.75 35.5V38c0 1.933 1.567 3.5 3.5 3.5h23.5c1.933 0 3.5-1.567 3.5-3.5v-2.5H5.75z"></path>
                                                                     <rect
                                                                         width="5.125"
@@ -161,9 +200,15 @@ const Seat = ({ ...props }) => {
                                     </ul>
                                     <ul className={`seat-map-table-content ${changeTang && 'hide-mb'}`}>
                                         {dataSeat.map(
-                                            (li) =>
+                                            (li, index) =>
                                                 li.type_seat === '1' && (
-                                                    <li id={li.id} key={li.id}>
+                                                    <li
+                                                        className="seat-item"
+                                                        key={index}
+                                                        id={li.id}
+                                                        onClick={handleSelectSeat}
+                                                        data-name={li.name}
+                                                    >
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="42"
@@ -172,11 +217,14 @@ const Seat = ({ ...props }) => {
                                                             className="seat s-disabled"
                                                             pos="0"
                                                         >
-                                                            <g fill="none" fillRule="evenodd">
-                                                                <g
-                                                                    onClick={(e) => setStatusSeat(!statusSeat)}
-                                                                    className={`active`}
-                                                                >
+                                                            <g
+                                                                fill="none"
+                                                                fillRule="evenodd"
+                                                                className={`${
+                                                                    !chooseSeat[li.id] ? 'active' : 'selecting'
+                                                                }`}
+                                                            >
+                                                                <g>
                                                                     <path d="M8.625.5c-3.038 0-5.5 2.462-5.5 5.5v27.875c0 .828.672 1.5 1.5 1.5h32.75c.828 0 1.5-.672 1.5-1.5V6c0-3.038-2.462-5.5-5.5-5.5H8.625zM5.75 35.5V38c0 1.933 1.567 3.5 3.5 3.5h23.5c1.933 0 3.5-1.567 3.5-3.5v-2.5H5.75z"></path>
                                                                     <rect
                                                                         width="5.125"

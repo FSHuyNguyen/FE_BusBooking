@@ -208,11 +208,28 @@ form {
     }
 
     .form_modal .field {
-        margin: 10px 0 15px 0;
+        margin: 30px 0 15px 0;
+    }
+
+    .form-message {
+        font-size: 1.3rem;
+        color: var(--primary-color);
+    }
+
+    .form-link {
+        margin-top: 25px;
+    }
+
+    .line {
+        margin: 10px 0;
+    }
+
+    .field input {
+        margin-bottom: 5px;
     }
 
     .media-options .field {
-        margin: 15px 0;
+        margin: 10px 0;
     }
 
     .field-title {
@@ -244,5 +261,9 @@ form {
 
     .media-options .field {
         margin: 10px 0;
+    }
+
+    .form_modal .field {
+        margin: 30px 0 20px 0;
     }
 }

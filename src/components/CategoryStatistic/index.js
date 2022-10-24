@@ -10,29 +10,28 @@ const CategoryStatistic = () => {
                     <li className="statistic-item">
                         <i className="statistic-item__icon bx bxs-user-check"></i>
                         <div className="statistic-item__header">
-                            <h3 className="statistic-item__heading">Personalized search</h3>
+                            <h3 className="statistic-item__heading">Hơn 20.000.000 hành khách</h3>
                             <p className="statistic-item__description">
-                                5000+ routes, 2000+ Bus Operators, and 5000+ Agencies across the country. Helps you
-                                quickly choose a favorite bus according to your needs.
+                                Thực hiện phương châm “Chất lượng là Danh dự”, Bus Line đang phục vụ hơn 20 triệu lượt
+                                hành khách mỗi năm thông qua 250 văn phòng tại 39/63 tỉnh thành Việt Nam với 60 tuyến
+                                liên tỉnh và hơn 2.000 xe các loại.
                             </p>
                         </div>
                     </li>
                     <li className="statistic-item">
-                        <i className="statistic-item__icon bx bxs-hand-up"></i>
+                        <i className="statistic-item__icon bx bxs-gas-pump"></i>
                         <div className="statistic-item__header">
-                            <h3 className="statistic-item__heading">Easy book</h3>
+                            <h3 className="statistic-item__heading">Hơn 250 xe khách đưa đón</h3>
                             <p className="statistic-item__description">
-                                Only taking over 60s to book. VeXeRe accepts a variety of payment options
+                                BusLine có hơn 250 chiếc xe khách nhằm phục vụ cho nhu cầu của khách hàng.
                             </p>
                         </div>
                     </li>
                     <li className="statistic-item">
-                        <i className="statistic-item__icon bx bxs-calendar-check"></i>
+                        <i className="statistic-item__icon bx bxs-bus"></i>
                         <div className="statistic-item__header">
-                            <h3 className="statistic-item__heading">Guaranteed ticket</h3>
-                            <p className="statistic-item__description">
-                                We commit a 150% refund if not keeping your tickets. Keep your mind on a happy journey.
-                            </p>
+                            <h3 className="statistic-item__heading">Hơn 100 chuyến mỗi ngày</h3>
+                            <p className="statistic-item__description">BusLine phục vụ hơn 100 chuyến mỗi ngày.</p>
                         </div>
                     </li>
                 </ul>

@@ -134,6 +134,7 @@
     width: 100%;
     position: relative;
     border-bottom: 1px solid #ebedee;
+    cursor: pointer;
 }
 
 .title {
@@ -268,7 +269,7 @@ table {
 }
 
 .seat-map-table-content li {
-    padding: 10px;
+    margin: 10px;
 }
 
 .table {
@@ -304,6 +305,8 @@ td {
     height: 42px;
     background: none;
     border: none;
+    cursor: pointer;
+    pointer-events: none;
 }
 
 .disabled-seat {
@@ -495,14 +498,21 @@ td {
     display: block;
 }
 
-.disabledInfo {
-    display: none;
+@media only screen and (max-width: 1024px) {
+    .left-btn {
+        margin: 0;
+    }
+
+    .back-btn {
+        padding: 0;
+    }
 }
 
 @media only screen and (max-width: 600px) {
     .bus-option-label {
-        width: 300px;
-        font-size: 14px;
+        width: 286px;
+        font-size: 12px;
+        padding: 5px 8px;
     }
 
     .bus-option .bus-option-header {
@@ -527,7 +537,7 @@ td {
     }
 
     .seat-map-table-content li {
-        padding: 20px;
+        margin: 20px;
     }
     .active {
         border-bottom: 2px solid var(--primary-color);
@@ -552,5 +562,27 @@ td {
 
     .seat-map-table-content > ul ~ ul {
         padding: 0;
+    }
+
+    .booking-back-btn {
+        max-width: 400px;
+        width: 100%;
+        margin: 40px 0;
+    }
+
+    .back-btn {
+        padding: 0;
+    }
+
+    .alert > span {
+        font-size: 1.4rem;
+    }
+
+    .back-btn > i {
+        margin-right: 8px;
+    }
+
+    .left-btn {
+        margin: 0;
     }
 }

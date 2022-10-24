@@ -1,6 +1,4 @@
 import React from 'react';
-import slider from '~/assets/slider';
-import Image from '../Image';
 import Search from '../Search';
 
 const Hero = () => {

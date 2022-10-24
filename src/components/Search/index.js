@@ -168,7 +168,7 @@ const Search = () => {
                     </div>
                     <Image
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAACTUExURf///+9RHN7k6Pj5+t3j6Pz9/f///97i6Obp7eLm6t7k597i6Ort8Ovr6/v8/P7+/vr7/N3p6e3v8fP19+Pj6uzv8d7j597j5/f4+d7j5+Hl6t3j6N7j6N/j6PSGY+rt7+Tk5PBWI/BTH/epkfiqkvirk/iwmviynP3p4t/j6d3i6P3p4/BVIvBXJP3n4PeokEdwTMlG7ekAAAAxdFJOU///f//z/wGq//5S6P8M////Fv//I/9y2f+l/7/Tgv//Cf//////////g/L//////wDIpbVhAAABPklEQVQ4y5WV15qDIBCFR8Dee09i6ibbfP+nW7L7xYyuKDlXlF8HhuEA/UhJVtY5Y3ldZsl4BlA7bJsqjYvA94MiTqumDWdBl7CIAhKNGHH/g5bteDCR59jWBNSISWFG1CQaBne6ocKsVEPfPUFN34JQW10bQGLAggzyAC1TXQJV0/oDXZvCoqjt/oLEgRU55A6GzFsDPRZy8BrBqqKWg41ghe94lU0PSSX4y+cBdaoEslQAfiiITDMo4ymxUR46D2NxCXUhBi/DWFFDHghC75XTsxPkwHw8+/Zsdkc07jO4YfDYzX7Dwdso9EnZC9bBQ6PNXIZdbKYg3wxKz1kM8vTghB+EoXnCR0f43QlAfoTjovgSlC4vir6VLTPpwpW+CvKXS/q6yhuAvKVIm5S87ckb6QvWfDf7q5TZrzwfP7TlSKhNtCqwAAAAAElFTkSuQmCC"
-                        className="change-img center"
+                        className={`change-img center ${!inputFrom.name && !inputTo.name && 'change-img-disabled'}`}
                         onClick={handleChangeRoundTrip}
                         alt="change"
                         ref={rotateRef}

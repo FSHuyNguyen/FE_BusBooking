@@ -4,7 +4,7 @@ import '~/components/SearchBusMiddle/style.css';
 import BusOption from '../BusOption';
 import moment from 'moment/moment';
 
-const SearchBusMiddle = ({ filter, setFilter, List }) => {
+const SearchBusMiddle = ({ filter, setFilter, List, statusApi }) => {
     const [time, setTime] = useState('');
     useEffect(() => {
         const getTypeBusApi = async () => {
@@ -90,7 +90,7 @@ const SearchBusMiddle = ({ filter, setFilter, List }) => {
                     <h2 className="trip-info">Chọn giờ lên xe đi Đà Lạt từ TP.Hồ Chí Minh</h2>
                 </div>
 
-                <BusOption ListItem={List} filter={filter} />
+                <BusOption ListItem={List} filter={filter} statusApi={statusApi} />
             </div>
         </div>
     );

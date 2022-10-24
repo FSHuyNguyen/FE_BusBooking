@@ -102,12 +102,15 @@ select.custom-select:focus {
     }
 
     .custom-select.filter-select {
-        width: 100px;
-        margin-right: 10px;
+        width: 70%;
+        margin: 10px 5px;
+        padding: 0 10px;
+        height: 38px;
     }
 
     .search__bus-content-filter {
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     .trip-info {

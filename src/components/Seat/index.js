@@ -7,7 +7,6 @@ import ElevenTableSeat from '../ElevenTableSeat';
 import FiveTableSeat from '../FiveTableSeat';
 import FourTableSeat from '../FourTableSeat';
 import NineTableSeat from '../NineTableSeat';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import OneTableSeat from '../OneTableSeat';
 import SevenTableSeat from '../SevenTableSeat';
 import SixTableSeat from '../SixTableSeat';
@@ -15,55 +14,24 @@ import TenTableSeat from '../TenTableSeat';
 import ThreeTableSeat from '../ThreeTableSeat';
 import TwelveTableSeat from '../TwelveTableSeat';
 import TwoTableSeat from '../TwoTableSeat';
+import SeatMapContent from '../SeatMapContent';
 
 const Seat = ({ ...props }) => {
     const [dataSeat, setDataSeat] = useState([]);
-    const [changeTang, setchangeTang] = useState(true);
     const [showTrip, setShowTrip] = useState(false);
-    const [totalSeat, setTotalSeat] = useState({
-        value: '',
-    });
-    const [chooseSeat, setChooseSeat] = useState({});
 
     useEffect(() => {
         const getSeatbyBusId = async () => {
             const res = await axios.get(process.env.REACT_APP_BASE_URL + '/seat/' + props.BusId);
-
             setDataSeat(res.data.all_seat);
         };
         getSeatbyBusId();
     }, []);
 
-    const handleChangeTang = () => {
-        setchangeTang(!changeTang);
-    };
-
     const handleShowTrip = () => {
         setShowTrip(!showTrip);
     };
 
-    const handleSelectSeat = (event) => {
-        if (Object.keys(chooseSeat).length < 5 && !chooseSeat[event.target.id]) {
-            setChooseSeat({ ...chooseSeat, [event.target.id]: true });
-            // setTotalSeat({ ...totalSeat, value: event.target.dataset.name });
-        } else if (chooseSeat[event.target.id]) {
-            delete chooseSeat[event.target.id];
-            setChooseSeat({ ...chooseSeat });
-            // setTotalSeat({ ...totalSeat, value: event.target.dataset.name });
-        } else {
-            Notify.warning('Số lượng vé được đặt tối đa là 5!', {
-                zindex: `999999`,
-                useIcon: false,
-                cssAnimationStyle: 'from-right',
-                cssAnimationDuration: 600,
-                distance: '30px',
-                showOnlyTheLastOne: true,
-                clickToClose: true,
-                fontSize: '16px',
-            });
-        }
-    };
-    // console.log(totalSeat);
     return (
         <>
             {(dataSeat.length === 0 && (
@@ -126,173 +94,7 @@ const Seat = ({ ...props }) => {
                             <TwelveTableSeat ShowTrip={showTrip} Props={props} />
                         )}
                     </div>
-                    <div className="seat-map-content" style={{ display: 'flex' }}>
-                        <div className="seat-map-content-wrap">
-                            <div className="seat-map-title">
-                                <div className={`seat-map-mb ${changeTang && 'active'}`} onClick={handleChangeTang}>
-                                    Tầng dưới
-                                </div>
-                                <div className={`seat-map-mb ${!changeTang && 'active'}`} onClick={handleChangeTang}>
-                                    Tầng trên
-                                </div>
-                            </div>
-                            <div className="seat-map-table">
-                                <div className="seat-map-table-content">
-                                    <ul className={`seat-map-table-content ${!changeTang && 'hide-mb'}`}>
-                                        {dataSeat.map(
-                                            (li, index) =>
-                                                li.type_seat === '0' && (
-                                                    <li
-                                                        className="seat-item"
-                                                        key={index}
-                                                        id={li.id}
-                                                        onClick={handleSelectSeat}
-                                                        data-name={li.name}
-                                                    >
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            width="42"
-                                                            height="42"
-                                                            viewBox="0 0 42 42"
-                                                            className="seat s-disabled"
-                                                            pos="0"
-                                                        >
-                                                            <g
-                                                                fill="none"
-                                                                fillRule="evenodd"
-                                                                className={`${
-                                                                    !chooseSeat[li.id] ? 'active' : 'selecting'
-                                                                }`}
-                                                            >
-                                                                <g>
-                                                                    <path d="M8.625.5c-3.038 0-5.5 2.462-5.5 5.5v27.875c0 .828.672 1.5 1.5 1.5h32.75c.828 0 1.5-.672 1.5-1.5V6c0-3.038-2.462-5.5-5.5-5.5H8.625zM5.75 35.5V38c0 1.933 1.567 3.5 3.5 3.5h23.5c1.933 0 3.5-1.567 3.5-3.5v-2.5H5.75z"></path>
-                                                                    <rect
-                                                                        width="5.125"
-                                                                        height="16.5"
-                                                                        x=".5"
-                                                                        y="13.625"
-                                                                        rx="2.563"
-                                                                    ></rect>
-                                                                    <rect
-                                                                        width="5.125"
-                                                                        height="16.5"
-                                                                        x="36.375"
-                                                                        y="13.625"
-                                                                        rx="2.563"
-                                                                    ></rect>
-                                                                </g>
-                                                            </g>
-                                                            <text>
-                                                                <tspan
-                                                                    x="50%"
-                                                                    y="50%"
-                                                                    dominantBaseline="middle"
-                                                                    textAnchor="middle"
-                                                                    className="active-seat-text"
-                                                                >
-                                                                    {li.name}
-                                                                </tspan>
-                                                            </text>
-                                                        </svg>
-                                                    </li>
-                                                ),
-                                        )}
-                                    </ul>
-                                    <ul className={`seat-map-table-content ${changeTang && 'hide-mb'}`}>
-                                        {dataSeat.map(
-                                            (li, index) =>
-                                                li.type_seat === '1' && (
-                                                    <li
-                                                        className="seat-item"
-                                                        key={index}
-                                                        id={li.id}
-                                                        onClick={handleSelectSeat}
-                                                        data-name={li.name}
-                                                    >
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            width="42"
-                                                            height="42"
-                                                            viewBox="0 0 42 42"
-                                                            className="seat s-disabled"
-                                                            pos="0"
-                                                        >
-                                                            <g
-                                                                fill="none"
-                                                                fillRule="evenodd"
-                                                                className={`${
-                                                                    !chooseSeat[li.id] ? 'active' : 'selecting'
-                                                                }`}
-                                                            >
-                                                                <g>
-                                                                    <path d="M8.625.5c-3.038 0-5.5 2.462-5.5 5.5v27.875c0 .828.672 1.5 1.5 1.5h32.75c.828 0 1.5-.672 1.5-1.5V6c0-3.038-2.462-5.5-5.5-5.5H8.625zM5.75 35.5V38c0 1.933 1.567 3.5 3.5 3.5h23.5c1.933 0 3.5-1.567 3.5-3.5v-2.5H5.75z"></path>
-                                                                    <rect
-                                                                        width="5.125"
-                                                                        height="16.5"
-                                                                        x=".5"
-                                                                        y="13.625"
-                                                                        rx="2.563"
-                                                                    ></rect>
-                                                                    <rect
-                                                                        width="5.125"
-                                                                        height="16.5"
-                                                                        x="36.375"
-                                                                        y="13.625"
-                                                                        rx="2.563"
-                                                                    ></rect>
-                                                                </g>
-                                                            </g>
-                                                            <text>
-                                                                <tspan
-                                                                    x="50%"
-                                                                    y="50%"
-                                                                    dominantBaseline="middle"
-                                                                    textAnchor="middle"
-                                                                    className="active-seat-text"
-                                                                >
-                                                                    {li.name}
-                                                                </tspan>
-                                                            </text>
-                                                        </svg>
-                                                    </li>
-                                                ),
-                                        )}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="seat-status">
-                                <div className="status-item">
-                                    <div className="status-item-active"></div>
-                                    <div className="status-item-text">Còn trống</div>
-                                </div>
-                                <div className="status-item">
-                                    <div className="status-item-select"></div>
-                                    <div className="status-item-text">Đã chọn</div>
-                                </div>
-                                <div className="status-item">
-                                    <div className="status-item-disabled"></div>
-                                    <div className="status-item-text">Đã đặt</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="footer-seat-map">
-                            <div>
-                                <div className="info-ticket">
-                                    <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>0 vé:</font>
-                                </div>
-                                <div className="info-ticket">
-                                    <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>Tổng: </font>
-                                    <span className="total">
-                                        0 <sup>đ</sup>
-                                    </span>
-                                </div>
-                            </div>
-                            <Button buttonSize={'btn--large'}>
-                                <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>Next</font>
-                                <i className="arrow-next bx bx-chevron-right"></i>
-                            </Button>
-                        </div>
-                    </div>
+                    <SeatMapContent dataSeat={dataSeat} props={props} />
                 </div>
             )}
         </>

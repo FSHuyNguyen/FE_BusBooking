@@ -1,11 +1,11 @@
 import moment from 'moment/moment';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '~/components/BusOption/style.css';
 import Seat from '../Seat';
 import ContentLoader from 'react-content-loader';
 import { Link } from 'react-router-dom';
 
-const BusOption = ({ ListItem, filter, statusApi }) => {
+const BusOption = ({ ListItem, statusApi }) => {
     const [ticketSelect, setTicketSelect] = useState({});
 
     const numberFormat = (value) =>
@@ -114,7 +114,7 @@ const BusOption = ({ ListItem, filter, statusApi }) => {
                     <div>
                         {ListItem.map((item, index) => (
                             <div
-                                id={index}
+                                id={item.id}
                                 className={`bus-option ${ticketSelect[index] ? 'selected' : ''}`}
                                 key={index}
                             >
@@ -157,7 +157,7 @@ const BusOption = ({ ListItem, filter, statusApi }) => {
                                     <span className="dot"></span>
                                     <span>{item.type_bus}</span>
                                     <span className="dot"></span>
-                                    {(item.type_bus === 'Giường' && 'Còn 24 chỗ trống') || 'Còn 22 chỗ trống'}
+                                    {`Còn ${item.count} chỗ trống`}
                                 </div>
                                 <div className="bus-line-content">
                                     <div className="bus-line-list">
@@ -200,9 +200,13 @@ const BusOption = ({ ListItem, filter, statusApi }) => {
 
                                 {ticketSelect[index] ? (
                                     <Seat
+                                        type_ticket_id={item.id}
                                         BusId={item.bus_id}
+                                        price={item.price}
                                         From={item.from}
                                         To={item.to}
+                                        type_bus={item.type_bus}
+                                        distance={item.distance}
                                         timeStart={item.time_start}
                                         timeEnd={item.time_end}
                                     />

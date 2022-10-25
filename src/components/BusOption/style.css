@@ -312,6 +312,7 @@ td {
 .disabled-seat {
     fill: #d5d9dd;
     stroke: silver;
+    cursor: not-allowed;
 }
 
 .animated-background {
@@ -515,6 +516,10 @@ td {
         padding: 5px 8px;
     }
 
+    .desc {
+        -webkit-line-clamp: 5;
+    }
+
     .bus-option .bus-option-header {
         font-size: 22px;
     }
@@ -524,7 +529,7 @@ td {
     }
 
     .time-line-content {
-        width: 295px;
+        width: 280px;
     }
 
     .seat-map-content-wrap {
@@ -532,14 +537,20 @@ td {
         width: 100%;
     }
 
+    .seat-map-table-content {
+        gap: 10px;
+        padding-left: 4px;
+        margin: 10px 0px;
+    }
+
     .seat-map-content {
-        min-width: 295px;
+        min-width: 280px;
     }
 
     .seat-map-table-content li {
         margin: 20px;
     }
-    .active {
+    .seat-map-active {
         border-bottom: 2px solid var(--primary-color);
         color: var(--primary-color);
     }

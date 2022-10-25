@@ -1,0 +1,129 @@
+.child {
+    max-width: 936px;
+    width: 100vw vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.confirmation-container {
+    width: 700px;
+    margin: 0 auto 20px;
+    border: 1px solid #dde2e8;
+    border-radius: 16px;
+}
+
+.confirmation-title {
+    height: 65px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f15a24;
+    line-height: 65px;
+}
+
+.confirmation-label {
+    color: #111;
+    margin: 0 20px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    min-width: 200px;
+    height: 28px;
+    border-radius: 16px;
+    padding: 5px 12px;
+    display: inline-block;
+    background-color: rgba(99, 114, 128, 0.1);
+}
+
+.confirmation-label .dot {
+    display: inline-block;
+    width: 6px;
+    border-radius: 3px;
+    height: 6px;
+    opacity: 0.3;
+    margin: 3px 12px;
+    background-color: #000;
+}
+
+.confirmation-line-container {
+    display: flex;
+    padding: 0 20px 20px 68px;
+}
+
+.confirmation-line {
+    font-size: 15px;
+    color: #637280;
+    position: relative;
+    border-left: 2px dotted #c0c6cc;
+    padding-left: 22px;
+    margin-left: 8px;
+}
+
+.confirmation-time {
+    position: absolute;
+    left: -52px;
+    top: 0;
+    font-size: 13px;
+    color: #637280;
+}
+
+.confirmation-line > img {
+    width: 16px;
+    top: 0;
+    left: -9px;
+    position: absolute;
+}
+
+.confirmation-bus-line {
+    font-size: 13px;
+    color: #00613d;
+    line-height: 48px;
+    min-height: 30px;
+}
+
+.divider {
+    height: 10px;
+    border-top: 1px solid #dde2e8;
+    border-bottom: 1px solid #dde2e8;
+    background-color: #f7f7f7;
+}
+
+.seats {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.seats-list {
+    flex: 1 1;
+    font-size: 14px;
+    color: #637280;
+    flex-direction: column;
+    display: flex;
+    line-height: 2.2rem;
+}
+
+.seats-item {
+    font-size: 18px;
+    font-weight: 500;
+    color: #111;
+}
+
+.action-seat {
+    font-size: 12px;
+    font-weight: 700;
+    color: #ef5222;
+    text-transform: uppercase;
+    line-height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.action-seat > i {
+    font-size: 1.8rem;
+    margin-left: 6px;
+}

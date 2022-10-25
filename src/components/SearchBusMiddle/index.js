@@ -16,7 +16,6 @@ const SearchBusMiddle = ({ filter, setFilter, List, statusApi }) => {
         };
         getTypeBusApi();
     }, []);
-
     const HandleChangeTime = (value) => {
         setTime(value);
         switch (value) {

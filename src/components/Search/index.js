@@ -7,7 +7,6 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Image from '../Image';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
-import moment, { locale } from 'moment/moment';
 
 const Search = () => {
     const [dataSearch, setDataSearch] = useState([]);
@@ -181,7 +180,7 @@ const Search = () => {
                             zIndex="9999999"
                             offset={[-238, 10]}
                             render={(attrs) =>
-                                inputFrom ? (
+                                inputFrom.name ? (
                                     <div className="data_list_search-to" tabIndex={'-1'} {...attrs}>
                                         <ul className="place-list">
                                             {dataSearch &&

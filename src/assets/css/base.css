@@ -395,7 +395,7 @@ a.google span {
 }
 
 .btn--large {
-    width: 290px;
+    width: 340px;
     height: 48px;
     font-size: 18px;
     border-radius: 24px;
@@ -409,8 +409,9 @@ a.google span {
 }
 
 .btn--secondary {
-    color: var(--white-color);
-    background-color: var(--secondary-color);
+    color: #111;
+    background-color: #fff;
+    border: 1px solid #c0c6cc;
 }
 
 .btn--hollow {

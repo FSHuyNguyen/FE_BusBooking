@@ -201,8 +201,8 @@ const BusOption = ({ ListItem, statusApi }) => {
                                 {ticketSelect[index] ? (
                                     <Seat
                                         type_ticket_id={item.id}
-                                        BusId={item.bus_id}
                                         price={item.price}
+                                        BusId={item.bus_id}
                                         From={item.from}
                                         To={item.to}
                                         type_bus={item.type_bus}

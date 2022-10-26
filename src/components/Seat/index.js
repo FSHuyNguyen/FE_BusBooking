@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
-import Button from '../Button';
 import EightTableSeat from '../EightTableSeat';
 import ElevenTableSeat from '../ElevenTableSeat';
 import FiveTableSeat from '../FiveTableSeat';

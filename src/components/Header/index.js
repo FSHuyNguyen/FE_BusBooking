@@ -74,9 +74,7 @@ const Header = () => {
                                 <Skeleton circle width={40} height={40} />
                             ) : !authState.isAuthenticated ? (
                                 <div className="btn-home">
-                                    <Button version="secondary" onClick={() => setOnAuth(true)}>
-                                        Đăng nhập
-                                    </Button>
+                                    <Button onClick={() => setOnAuth(true)}>Đăng nhập</Button>
                                 </div>
                             ) : (
                                 <div style={{ display: 'flex' }}>

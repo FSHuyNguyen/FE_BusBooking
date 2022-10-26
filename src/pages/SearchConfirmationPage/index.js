@@ -5,9 +5,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 const SearchConfirmationPage = () => {
     const [params, setParams] = useSearchParams();
     const navigate = useNavigate();
+
     useEffect(() => {
-        if (!params.get('from') || !params.get('to')) return navigate('/');
+        if (!params.get('date') || !params.get('type')) return navigate('/');
     }, []);
+
     return (
         <>
             <SearchConfirmation />

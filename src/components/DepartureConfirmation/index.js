@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import '~/components/DepartureConfirmation/style.css';
 import SeatMapContent from '../SeatMapContent';
 import moment from 'moment/moment';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const DepatureConfirmation = ({ TypeTicket }) => {
     const [params, setParams] = useSearchParams();
     const [seat, setSeat] = useState([]);
-    const [array, setArray] = useState([]);
     const [openSeat, setOpenSeat] = useState(false);
+    const navigate = useNavigate();
+    const [pageStatus, setPageStatus] = useState(true);
 
     useEffect(() => {
         const getSeatbyBusId = async () => {
@@ -27,8 +29,32 @@ const DepatureConfirmation = ({ TypeTicket }) => {
         }).format(value);
 
     const handleOpenSeat = () => {
-        setOpenSeat(!openSeat);
+        setOpenSeat(true);
     };
+
+    const handleCustormerInfor = () => {
+        params.get('name') !== null
+            ? navigate({
+                  pathname: '/customer-information',
+                  search: `?from=${TypeTicket.from}&to=${TypeTicket.to}&date=${params.get('date')}&time=${
+                      TypeTicket.time_start
+                  }&type=${TypeTicket.id}&bus=${TypeTicket.bus_id}&id=${params.get('id')}&name=${params.get(
+                      'name',
+                  )}&status=${pageStatus}`,
+              })
+            : Notify.warning('Vui lòng kiểm tra lại thông tin vé!', {
+                  zindex: `999999`,
+                  useIcon: false,
+                  cssAnimationStyle: 'from-right',
+                  cssAnimationDuration: 600,
+                  distance: '30px',
+                  showOnlyTheLastOne: true,
+                  clickToClose: true,
+                  fontSize: '16px',
+                  timeout: '1000',
+              });
+    };
+
     return (
         <div className="child">
             <div className="confirmation-container">
@@ -73,7 +99,7 @@ const DepatureConfirmation = ({ TypeTicket }) => {
                         <span>Ghế đã chọn</span>
                         <span className="seats-item">{params.get('name')}</span>
                     </div>
-                    <div className="action-seat" onClick={handleOpenSeat}>
+                    <div className={`${!openSeat ? 'action-seat' : 'action-seat-disabled'}`} onClick={handleOpenSeat}>
                         <span>Thay đổi ghế</span>
                         <i className="bx bxs-edit-alt"></i>
                     </div>
@@ -81,21 +107,21 @@ const DepatureConfirmation = ({ TypeTicket }) => {
                 <SeatMapContent
                     dataSeat={seat}
                     TypeTicket={TypeTicket}
-                    name={params.get('name').split(',')}
+                    name={params.get('name') ? params.get('name').split(',') : {}}
                     openSeat={openSeat}
                 />
             </div>
             <div className="search-confirm-btn">
                 <div className="search-confirm-left-btn">
-                    <Link to="/search" className="back-btn">
+                    <Button className="search-confirm-back-btn" onClick={() => navigate(-1)}>
                         <i className="bx bx-chevron-left"></i>
-                        <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>Back</font>
-                    </Link>
+                        <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Back</font>
+                    </Button>
                 </div>
                 <div className="search-confirm-right-btn">
-                    <Button buttonSize={'btn--large'}>
-                        <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>Next</font>
-                        <i className="arrow-btn-next bx bx-chevron-right"></i>
+                    <Button className="search-confirm-next-btn" onClick={handleCustormerInfor}>
+                        <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next</font>
+                        <i className="bx bx-chevron-right"></i>
                     </Button>
                 </div>
             </div>

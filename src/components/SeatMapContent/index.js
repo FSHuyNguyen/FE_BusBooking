@@ -8,6 +8,7 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
     const [chooseSeat, setChooseSeat] = useState({});
     const [params, setParams] = useSearchParams();
     const [getSeatID, setGetSeatID] = useState({});
+    const [updateParams, setUpdateParams] = useState(false);
     const navigate = useNavigate();
 
     const handleChangeTang = () => {
@@ -21,11 +22,17 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
         ) {
             setChooseSeat({ ...chooseSeat, [event.target.dataset.name]: true });
             setGetSeatID({ ...getSeatID, [event.target.id]: true });
+            if (typeof name === 'object') {
+                setUpdateParams(true);
+            }
         } else if (chooseSeat[event.target.dataset.name]) {
             delete chooseSeat[event.target.dataset.name];
             delete getSeatID[event.target.id];
             setChooseSeat({ ...chooseSeat });
             setGetSeatID({ ...getSeatID });
+            if (typeof name === 'object') {
+                setUpdateParams(true);
+            }
         } else {
             if (event.target.dataset.status === '1') {
                 Notify.info('Vé này đã được đặt!', {
@@ -65,9 +72,9 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
         Object.keys(chooseSeat).length > 0
             ? navigate({
                   pathname: '/search-confirmation',
-                  search: `?&date=${params.get('date')}&type=${props.type_ticket_id}&bus=${
-                      props.BusId
-                  }&id=${Object.keys(getSeatID)}&name=${Object.keys(chooseSeat)}`,
+                  search: `?from=${props.From}&to=${props.To}&date=${params.get('date')}&type=${
+                      props.type_ticket_id
+                  }&bus=${props.BusId}&id=${Object.keys(getSeatID)}&name=${Object.keys(chooseSeat)}`,
               })
             : Notify.warning('Vui lòng chọn chuyến xe và ghế ngồi!', {
                   zindex: `999999`,
@@ -84,13 +91,32 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
 
     useEffect(() => {
         if (!dataSeat || dataSeat.length === 0 || typeof name !== 'object') return;
-        let obj = {};
+        let obj1 = {};
+        let obj2 = {};
+        if (params.get('id') === null) return navigate(-1);
         for (var i = 0; i < dataSeat.length; i++) {
-            if (params.get('id').split(',').includes(String(dataSeat[i].id)))
-                obj = { ...obj, [dataSeat[i].name]: true };
+            if (params.get('id').split(',').includes(String(dataSeat[i].id))) {
+                obj1 = { ...obj1, [dataSeat[i].name]: true };
+                obj2 = { ...obj2, [dataSeat[i].id]: true };
+            }
         }
-        setChooseSeat(obj);
+
+        setChooseSeat(obj1);
+        setGetSeatID(obj2);
     }, [dataSeat]);
+
+    useEffect(() => {
+        if (!updateParams) return;
+        setParams({
+            from: params.get('from'),
+            to: params.get('to'),
+            date: params.get('date'),
+            type: params.get('type'),
+            bus: params.get('bus'),
+            id: Object.keys(getSeatID),
+            name: Object.keys(chooseSeat),
+        });
+    }, [chooseSeat]);
 
     return (
         <>

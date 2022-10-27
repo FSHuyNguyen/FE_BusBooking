@@ -7,6 +7,7 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import SearchConfirmationPage from './pages/SearchConfirmationPage';
+import CustomerInformationPage from './components/CustomerInformation';
 
 function App() {
     return (
@@ -33,6 +34,22 @@ function App() {
                     element={
                         <MainLayout>
                             <SearchConfirmationPage />
+                        </MainLayout>
+                    }
+                />
+                <Route
+                    path="/search-confirmation"
+                    element={
+                        <MainLayout>
+                            <SearchConfirmationPage />
+                        </MainLayout>
+                    }
+                />
+                <Route
+                    path="/customer-information"
+                    element={
+                        <MainLayout>
+                            <CustomerInformationPage />
                         </MainLayout>
                     }
                 />

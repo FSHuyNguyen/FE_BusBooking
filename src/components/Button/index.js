@@ -10,6 +10,7 @@ function Button({ children, version, onClick, buttonStyle, buttonSize, type, isD
     const checkButtonStyle = Size.includes(buttonStyle) ? Style[0] : buttonStyle;
 
     const checkButtonSize = Size.includes(buttonSize) ? buttonSize : Size[0];
+
     const props = {
         ...passProps,
     };

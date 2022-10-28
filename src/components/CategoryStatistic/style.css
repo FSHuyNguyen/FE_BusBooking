@@ -61,8 +61,8 @@
     display: -webkit-box;
     text-overflow: ellipsis;
     -webkit-line-clamp: 6;
-    overflow: hidden;
     -webkit-box-orient: vertical;
+    overflow: hidden;
     font-size: 1.4rem;
     font-weight: 400;
     color: #858585;

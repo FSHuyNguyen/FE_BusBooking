@@ -15,6 +15,7 @@ const Search = () => {
     const [roundTrip, setRoundTrip] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+
     const [inputFrom, setInputFrom] = useState({
         id: '',
         name: '',
@@ -23,6 +24,7 @@ const Search = () => {
         id: '',
         name: '',
     });
+
     const rotateRef = useRef(null);
     const navigate = useNavigate();
 

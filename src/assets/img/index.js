@@ -8,6 +8,9 @@ const images = {
     electricBus: require('~/assets/img/electric_bus.png'),
     giuongNam: require('~/assets/img/GiuongNam-png.jpg'),
     google: require('~/assets/img/google.jpg'),
+    vnpay: require('~/assets/img/vnpay_img.png'),
+    momo: require('~/assets/img/momo_img.png'),
+    zalopay: require('~/assets/img/zalopay_img.png'),
 };
 
 export default images;

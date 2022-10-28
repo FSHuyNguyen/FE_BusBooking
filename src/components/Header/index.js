@@ -6,7 +6,7 @@ import images from '~/assets/img';
 import Button from '~/components/Button';
 import { authSelector } from '~/redux/selector';
 import Auth from '../Auth';
-import { getUser } from '../Auth/authSlice';
+import authSlice, { getUser } from '../Auth/authSlice';
 import Image from '../Image';
 import User from '../User';
 import '~/components/Header/style.css';
@@ -15,19 +15,20 @@ import { disabledScroll, enabledScroll } from '~/utils/scrollBody';
 import Notify from '../Notify';
 import Skeleton from 'react-loading-skeleton';
 
-const Header = () => {
+const Header = ({}) => {
+    const { modalToggle } = useSelector(authSelector);
     const dispatch = useDispatch();
-    const [onAuth, setOnAuth] = useState(false);
-    const handleClose = () => setOnAuth(false);
     const authState = useSelector(authSelector);
     const [openMenu, setOpenMenu] = useState(false);
     const [openNotify, setOpenNotify] = useState(false);
+    const handleClose = () => dispatch(authSlice.actions.modalToggle(false));
+
     useEffect(() => {
         dispatch(getUser());
     }, []);
 
     useEffect(() => {
-        authState.isAuthenticated && setOnAuth(false);
+        authState.isAuthenticated && dispatch(authSlice.actions.modalToggle(false));
         authState.loading ? Loading.pulse({ zindex: 999999, svgColor: 'var(--primary-color)' }) : Loading.remove(500);
     }, [authState.isAuthenticated, authState.loading]);
 
@@ -74,7 +75,9 @@ const Header = () => {
                                 <Skeleton circle width={40} height={40} />
                             ) : !authState.isAuthenticated ? (
                                 <div className="btn-home">
-                                    <Button onClick={() => setOnAuth(true)}>Đăng nhập</Button>
+                                    <Button onClick={() => dispatch(authSlice.actions.modalToggle(true))}>
+                                        Đăng nhập
+                                    </Button>
                                 </div>
                             ) : (
                                 <div style={{ display: 'flex' }}>
@@ -93,7 +96,7 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-            {!authState.isAuthenticated && <Auth authOpen={onAuth} onClose={handleClose} />}
+            {!authState.isAuthenticated && <Auth authOpen={modalToggle} onClose={handleClose} />}
         </>
     );
 };

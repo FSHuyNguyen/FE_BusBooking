@@ -246,10 +246,15 @@
 
     .search__confimation-heading {
         padding-left: 15px;
+        width: 100%;
     }
 
     .search-confirm-btn {
         width: 100vw;
         padding: 0 16px;
+    }
+
+    .confirmation-title {
+        font-size: 16px;
     }
 }

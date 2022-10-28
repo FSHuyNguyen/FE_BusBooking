@@ -462,7 +462,7 @@ a.google span {
 .btn__remove {
     flex: 0 0 auto;
     color: rgba(0, 0, 0, 0.54);
-    padding: 12px;
+    padding: 2px 10px;
     overflow: visible;
     font-size: 1.7142857142857142rem;
     text-align: center;

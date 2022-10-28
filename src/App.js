@@ -7,7 +7,8 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import SearchConfirmationPage from './pages/SearchConfirmationPage';
-import CustomerInformationPage from './components/CustomerInformation';
+import PaymentPage from './pages/PaymentPage';
+import CustomerInformationPage from './pages/CustomerInformationPage';
 
 function App() {
     return (
@@ -38,18 +39,18 @@ function App() {
                     }
                 />
                 <Route
-                    path="/search-confirmation"
-                    element={
-                        <MainLayout>
-                            <SearchConfirmationPage />
-                        </MainLayout>
-                    }
-                />
-                <Route
                     path="/customer-information"
                     element={
                         <MainLayout>
                             <CustomerInformationPage />
+                        </MainLayout>
+                    }
+                />
+                <Route
+                    path="/payment"
+                    element={
+                        <MainLayout>
+                            <PaymentPage />
                         </MainLayout>
                     }
                 />

@@ -30,7 +30,6 @@ const Seat = ({ ...props }) => {
     const handleShowTrip = () => {
         setShowTrip(!showTrip);
     };
-
     return (
         <>
             {(dataSeat.length === 0 && (

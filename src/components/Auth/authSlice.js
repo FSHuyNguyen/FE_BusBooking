@@ -4,6 +4,7 @@ import axios from 'axios';
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
+        modalToggle: false,
         loading: false,
         isAuthenticated: false,
         user: null,
@@ -20,6 +21,9 @@ const authSlice = createSlice({
                 msg: {},
                 status: '',
             };
+        },
+        modalToggle: (state, action) => {
+            state.modalToggle = action.payload;
         },
     },
     extraReducers: (builder) => {

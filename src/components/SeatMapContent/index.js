@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Button from '../Button';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelector } from '~/redux/selector';
+import authSlice from '../Auth/authSlice';
 
 const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
     const [changeTang, setchangeTang] = useState(true);
@@ -10,6 +13,8 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
     const [getSeatID, setGetSeatID] = useState({});
     const [updateParams, setUpdateParams] = useState(false);
     const navigate = useNavigate();
+    const authState = useSelector(authSelector);
+    const dispatch = useDispatch();
 
     const handleChangeTang = () => {
         setchangeTang(!changeTang);
@@ -69,24 +74,28 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, openSeat }) => {
         }).format(value);
 
     const handleNextSearchConfirm = () => {
-        Object.keys(chooseSeat).length > 0
-            ? navigate({
-                  pathname: '/search-confirmation',
-                  search: `?from=${props.From}&to=${props.To}&date=${params.get('date')}&type=${
-                      props.type_ticket_id
-                  }&bus=${props.BusId}&id=${Object.keys(getSeatID)}&name=${Object.keys(chooseSeat)}`,
-              })
-            : Notify.warning('Vui lòng chọn chuyến xe và ghế ngồi!', {
-                  zindex: `999999`,
-                  useIcon: false,
-                  cssAnimationStyle: 'from-right',
-                  cssAnimationDuration: 600,
-                  distance: '30px',
-                  showOnlyTheLastOne: true,
-                  clickToClose: true,
-                  fontSize: '16px',
-                  timeout: '1000',
-              });
+        if (authState.isAuthenticated) {
+            Object.keys(chooseSeat).length > 0
+                ? navigate({
+                      pathname: '/search-confirmation',
+                      search: `?from=${props.From}&to=${props.To}&date=${params.get('date')}&type=${
+                          props.type_ticket_id
+                      }&bus=${props.BusId}&id=${Object.keys(getSeatID)}&name=${Object.keys(chooseSeat)}`,
+                  })
+                : Notify.warning('Vui lòng chọn chuyến xe và ghế ngồi!', {
+                      zindex: `999999`,
+                      useIcon: false,
+                      cssAnimationStyle: 'from-right',
+                      cssAnimationDuration: 600,
+                      distance: '30px',
+                      showOnlyTheLastOne: true,
+                      clickToClose: true,
+                      fontSize: '16px',
+                      timeout: '1000',
+                  });
+        } else {
+            dispatch(authSlice.actions.modalToggle(true));
+        }
     };
 
     useEffect(() => {

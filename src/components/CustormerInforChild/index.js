@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '~/components/CustormerInforChild/style.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelector } from '~/redux/selector';
+import { getUser } from '../Auth/authSlice';
+import moment from 'moment/moment';
 
 const CustomerInforChild = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const authState = useSelector(authSelector);
+    const [params, useParams] = useSearchParams();
+    const [dateTimeNow, setDateTimeNow] = useState('');
+
+    useEffect(() => {
+        dispatch(getUser());
+    }, []);
+
+    useEffect(() => {
+        const formatDateTime = () => {
+            var date = moment(params.get('date'), 'DD-MM-YYYY').format('YYYY-MM-DD');
+            var time = moment().get('hour') + ':' + moment().get('minute') + ':' + moment().get('second');
+            var dateTime = date + ' ' + time;
+            setDateTimeNow(dateTime);
+        };
+        formatDateTime();
+    }, [dateTimeNow]);
 
     const formik = useFormik({
         initialValues: {
@@ -20,8 +43,28 @@ const CustomerInforChild = () => {
             email: Yup.string().email('Kiểm tra lại định dạng Email').required('Vui lòng nhập Email'),
             city: Yup.string().required('Vui lòng nhập thành phố'),
         }),
-        onSubmit: (values) => {},
+        onSubmit: (values) => {
+            const create_order = async () => {
+                const res = await axios.post(process.env.REACT_APP_BASE_URL + '/order', {
+                    user_id: authState.user.id,
+                    type_ticket_id: params.get('type'),
+                    seat_id: params.get('id'),
+                    departure_date_time: dateTimeNow,
+                    city: values.city,
+                    full_name: values.name,
+                    phone: values.phone,
+                    email: values.email,
+                });
+                if (res.data.status === 200) {
+                    navigate({
+                        pathname: '/payment',
+                    });
+                }
+            };
+            create_order();
+        },
     });
+
     return (
         <div className="custormer_infor_child ">
             <div className="grid__row">

@@ -15,6 +15,7 @@ const BusOption = ({ ListItem, statusApi }) => {
         }).format(value);
 
     const handleSelect = (event) => setTicketSelect({ [event.target.id]: !ticketSelect[event.target.id] });
+
     return (
         <>
             {statusApi === 403 ? (

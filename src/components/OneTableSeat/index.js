@@ -1,6 +1,5 @@
 import moment from 'moment/moment';
 import React from 'react';
-import { HCM_DL } from '~/Data/RouteInformation';
 
 const OneTableSeat = ({ ShowTrip, Props }) => {
     return (
@@ -18,22 +17,8 @@ const OneTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{HCM_DL[0].data.location}</span>
-                        <p className="desc">{HCM_DL[0].data.address}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="time-td"></td>
-                    <td className="sub-title">
-                        <span>{HCM_DL[1].data.location}</span>
-                        <p className="desc">{HCM_DL[1].data.address}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="time-td"></td>
-                    <td className="sub-title">
-                        <span>{HCM_DL[2].data.location}</span>
-                        <p className="desc">{HCM_DL[2].data.address}</p>
+                        <span>{Props.location_start}</span>
+                        <p className="desc">{Props.address_start}</p>
                     </td>
                 </tr>
                 <tr>
@@ -42,8 +27,8 @@ const OneTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{HCM_DL[3].data.location}</span>
-                        <p className="desc">{HCM_DL[3].data.address}</p>
+                        <span>{Props.location_end}</span>
+                        <p className="desc">{Props.address_end}</p>
                     </td>
                 </tr>
             </tbody>

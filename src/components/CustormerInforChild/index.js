@@ -48,7 +48,7 @@ const CustomerInforChild = () => {
                 const res = await axios.post(process.env.REACT_APP_BASE_URL + '/order', {
                     user_id: authState.user.id,
                     type_ticket_id: params.get('type'),
-                    seat_id: params.get('id'),
+                    seat_id: JSON.stringify(params.get('id').split(',')),
                     departure_date_time: dateTimeNow,
                     city: values.city,
                     full_name: values.name,

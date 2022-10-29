@@ -205,6 +205,10 @@ const BusOption = ({ ListItem, statusApi }) => {
                                         price={item.price}
                                         BusId={item.bus_id}
                                         From={item.from}
+                                        location_start={item.location_start}
+                                        address_start={item.address_start}
+                                        location_end={item.location_end}
+                                        address_end={item.address_end}
                                         To={item.to}
                                         type_bus={item.type_bus}
                                         distance={item.distance}

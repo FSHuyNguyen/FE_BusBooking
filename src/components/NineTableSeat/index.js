@@ -1,6 +1,5 @@
 import moment from 'moment/moment';
 import React from 'react';
-import { DL_Ma } from '~/Data/RouteInformation';
 
 const NineTableSeat = ({ ShowTrip, Props }) => {
     return (
@@ -18,18 +17,8 @@ const NineTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{DL_Ma[0].data.location}</span>
-                        <p className="desc">{DL_Ma[0].data.address}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="time-td">
-                        <i className="bx bxs-map"></i>
-                        <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
-                    </td>
-                    <td className="sub-title">
-                        <span>{DL_Ma[1].data.location}</span>
-                        <p className="desc">{DL_Ma[1].data.address}</p>
+                        <span>{Props.location_start}</span>
+                        <p className="desc">{Props.address_start}</p>
                     </td>
                 </tr>
                 <tr>
@@ -38,8 +27,8 @@ const NineTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{DL_Ma[2].data.location}</span>
-                        <p className="desc">{DL_Ma[2].data.address}</p>
+                        <span>{Props.location_end}</span>
+                        <p className="desc">{Props.address_end}</p>
                     </td>
                 </tr>
             </tbody>

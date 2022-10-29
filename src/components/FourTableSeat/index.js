@@ -1,6 +1,5 @@
 import moment from 'moment/moment';
 import React from 'react';
-import { Ma_BL } from '~/Data/RouteInformation';
 
 const FourTableSeat = ({ ShowTrip, Props }) => {
     return (
@@ -18,8 +17,8 @@ const FourTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{Ma_BL[0].data.location}</span>
-                        <p className="desc">{Ma_BL[0].data.address}</p>
+                        <span>{Props.location_start}</span>
+                        <p className="desc">{Props.address_start}</p>
                     </td>
                 </tr>
                 <tr>
@@ -28,8 +27,8 @@ const FourTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{Ma_BL[1].data.location}</span>
-                        <p className="desc">{Ma_BL[1].data.address}</p>
+                        <span>{Props.location_end}</span>
+                        <p className="desc">{Props.address_end}</p>
                     </td>
                 </tr>
             </tbody>

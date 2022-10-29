@@ -7,10 +7,12 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../Auth/authSlice';
 import '~/components/User/style.css';
 import DropDownData from '~/Data/DropDownData';
+import { useNavigate } from 'react-router-dom';
 
 const User = (props) => {
     const dispatch = useDispatch();
     const [dropDown, setDropDown] = useState(false);
+    const navigate = useNavigate();
 
     const [history, setHistory] = useState([{ data: DropDownData }]);
     const current = history[history.length - 1];
@@ -59,7 +61,10 @@ const User = (props) => {
                                         if (isParent) {
                                             props.onClick = () => handleAddMenu();
                                         } else if (item.url === '/logout') {
-                                            props.onClick = () => dispatch(logout());
+                                            props.onClick = () => {
+                                                dispatch(logout());
+                                                return navigate('/');
+                                            };
                                         } else {
                                             props.to = item.url;
                                         }

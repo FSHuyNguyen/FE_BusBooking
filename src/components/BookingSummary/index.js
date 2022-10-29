@@ -5,13 +5,13 @@ import Button from '../Button';
 import BuyInformation from '../BuyInformation';
 import PaymentMethod from '../PaymentMethod';
 
-const BookingSummary = () => {
+const BookingSummary = ({ orderInfor }) => {
     const navigate = useNavigate();
 
     return (
         <>
             <div className="booking-summary-child container">
-                <BuyInformation />
+                <BuyInformation orderInfor={orderInfor} />
                 <PaymentMethod />
             </div>
             <div className="booking-summary-buttons">

@@ -1,6 +1,5 @@
 import moment from 'moment/moment';
 import React from 'react';
-import { DL_BL } from '~/Data/RouteInformation';
 
 const EightTableSeat = ({ ShowTrip, Props }) => {
     return (
@@ -18,8 +17,8 @@ const EightTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeStart}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{DL_BL[0].data.location}</span>
-                        <p className="desc">{DL_BL[0].data.address}</p>
+                        <span>{Props.location_start}</span>
+                        <p className="desc">{Props.address_start}</p>
                     </td>
                 </tr>
                 <tr>
@@ -28,8 +27,8 @@ const EightTableSeat = ({ ShowTrip, Props }) => {
                         <span className="time">{moment(`${Props.timeEnd}`, 'HH:mm:ss').format('HH:mm')}</span>
                     </td>
                     <td className="sub-title">
-                        <span>{DL_BL[1].data.location}</span>
-                        <p className="desc">{DL_BL[1].data.address}</p>
+                        <span>{Props.location_end}</span>
+                        <p className="desc">{Props.address_end}</p>
                     </td>
                 </tr>
             </tbody>

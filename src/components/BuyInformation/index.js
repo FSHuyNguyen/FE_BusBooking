@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { useEffect } from 'react';
+import ContentLoader from 'react-content-loader';
 
 const BuyInformation = ({ orderInfor }) => {
     const numberFormat = (value) =>
@@ -8,7 +9,26 @@ const BuyInformation = ({ orderInfor }) => {
             currency: 'VND',
         }).format(value);
 
-    return (
+    return orderInfor.length === 0 ? (
+        <ContentLoader
+            speed={2}
+            width={'100%'}
+            height={'100%'}
+            viewBox="0 0 936 538"
+            backgroundColor="#f5f5f5"
+            foregroundColor="#ccc"
+        >
+            <rect x="223" y="93" rx="0" ry="0" width="0" height="1" />
+            <rect x="205" y="122" rx="0" ry="0" width="2" height="0" />
+            <rect x="210" y="134" rx="0" ry="0" width="0" height="1" />
+            <rect x="198" y="120" rx="0" ry="0" width="1" height="0" />
+            <rect x="240" y="85" rx="0" ry="0" width="1" height="0" />
+            <rect x="0" y="-11" rx="8" ry="8" width={'100%'} height={'100%'} />
+            <rect x="0" y="40" rx="0" ry="0" width={'100%'} height={'100%'} />
+            <rect x="0" y="210" rx="0" ry="0" width={'100%'} height={'100%'} />
+            <rect x="0" y="435" rx="8" ry="8" width={'100%'} height={'100%'} />
+        </ContentLoader>
+    ) : (
         <div>
             <div className="buy-infor-container">
                 <div className="title-bar-bg">
@@ -31,7 +51,7 @@ const BuyInformation = ({ orderInfor }) => {
                                         <div className="grid__column-8 body-text-right">{orderInfor.phone}</div>
                                     </div>
                                     <div className="grid__column-12 section-body-field">
-                                        <div className="grid__column-4 body-sub-tit">Email:</div>
+                                        <div className="grid__column-4  body-sub-tit">Email:</div>
                                         <div className="grid__column-8 body-text-right">{orderInfor.email}</div>
                                     </div>
                                 </div>
@@ -44,9 +64,7 @@ const BuyInformation = ({ orderInfor }) => {
                     <div className="ticket-infor-section">
                         <div className="section-title">
                             <p className="section-title-txt">
-                                <font style={{ verticalAlign: 'inherit' }}>
-                                    Thông tin chuyến xe: {orderInfor.from} - {orderInfor.to}
-                                </font>
+                                Chuyến Xe: {orderInfor.from} - {orderInfor.to}
                             </p>
                         </div>
                         <div className="section-body">
@@ -76,7 +94,8 @@ const BuyInformation = ({ orderInfor }) => {
                                         <div className="grid__column-4 body-sub-tit">Điểm đón:</div>
                                         <div className="grid__column-8 body-text-right">
                                             <font style={{ verticalAlign: 'inherit' }}>
-                                                <p>{orderInfor.location}</p>:{orderInfor.address}
+                                                <span>{orderInfor.location}</span>
+                                                <p>{orderInfor.address}</p>
                                             </font>
                                         </div>
                                     </div>
@@ -105,9 +124,21 @@ const BuyInformation = ({ orderInfor }) => {
                                                                 ],
                                                             ) === index
                                                         )
-                                                            return (result += item);
-                                                        return (result += item + ',');
+                                                            return (result += item.name);
+                                                        return (result += item.name + ',');
                                                     }, '')}
+                                            </font>
+                                        </div>
+                                    </div>
+                                    <div className="grid__column-12 section-body-field">
+                                        <div className="grid__column-4 body-sub-tit ">
+                                            <font style={{ verticalAlign: 'inherit' }}>Đơn giá:</font>
+                                        </div>
+                                        <div className="grid__column-8 body-text-right seat-name">
+                                            <font style={{ verticalAlign: 'inherit' }}>
+                                                <span className="footer-infor-price">
+                                                    {numberFormat(orderInfor.price)}
+                                                </span>
                                             </font>
                                         </div>
                                     </div>

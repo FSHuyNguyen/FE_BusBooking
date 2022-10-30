@@ -293,12 +293,32 @@
     }
 
     .booking-summary-buttons {
-        width: 100vw;
+        width: 100%;
         padding: 0 16px;
     }
-
+    .booking-summary-back-btn {
+        padding-right: 12px;
+    }
     .booking-summart-left-button,
     .booking-summart-right-button {
         margin-right: 8px;
+    }
+
+    .booking-summary-back-btn > i {
+        padding-right: 0;
+        width: 25px;
+    }
+
+    .body-text-right {
+        text-align: left;
+    }
+
+    .section-title {
+        height: 50px;
+    }
+
+    .section-title-txt {
+        font-size: 15px;
+        margin-left: 18px;
     }
 }

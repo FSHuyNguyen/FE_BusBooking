@@ -15,6 +15,7 @@ const CustomerInforChild = () => {
     const authState = useSelector(authSelector);
     const [params, useParams] = useSearchParams();
     const [dateTimeNow, setDateTimeNow] = useState('');
+    const [statusStepLine, setStatusStepLine] = useState(true);
 
     useEffect(() => {
         dispatch(getUser());
@@ -58,6 +59,9 @@ const CustomerInforChild = () => {
                 if (res.data.status === 200) {
                     navigate({
                         pathname: '/payment',
+                        search: `?status-payment=${statusStepLine}&status=${params.get(
+                            'status',
+                        )}&type_ticket_id=${params.get('type')}&seat_id=${params.get('id')}`,
                     });
                 }
             };

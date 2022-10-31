@@ -3,12 +3,12 @@ import '~/components/BookingSummary/style.css';
 import BuyInformation from '../BuyInformation';
 import PaymentMethod from '../PaymentMethod';
 
-const BookingSummary = ({ orderInfor }) => {
+const BookingSummary = ({ orderInfor, user_id }) => {
     return (
         <>
             <div className="booking-summary-child container">
                 <BuyInformation orderInfor={orderInfor} />
-                <PaymentMethod />
+                <PaymentMethod orderInfor={orderInfor} user_id={user_id} />
             </div>
         </>
     );

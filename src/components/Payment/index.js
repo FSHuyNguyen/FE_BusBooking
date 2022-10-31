@@ -35,7 +35,6 @@ const Payment = () => {
         };
         orderInfor();
     }, [authState.isAuthenticated, authState.loading]);
-
     return (
         <div>
             <div className="payment-header-container">
@@ -43,7 +42,7 @@ const Payment = () => {
                     <h1>Thanh Toán</h1>
                 </div>
                 <StepLineContainer />
-                <BookingSummary orderInfor={orderInfor} />
+                <BookingSummary orderInfor={orderInfor} user_id={authState.user.id}/>
             </div>
         </div>
     );

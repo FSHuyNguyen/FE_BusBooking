@@ -1,0 +1,331 @@
+.booking-summary-child {
+    max-width: 936px;
+    width: 100vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.buy-infor-container {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #dce1e6;
+    background-color: #fff;
+    position: relative;
+    font-family: SFProText;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.title-bar-bg {
+    width: 100%;
+    height: 51px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #f15a24;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.title-txt {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+    text-transform: uppercase;
+}
+
+.customer-infor-booking-container {
+    width: 100%;
+    font-family: SFProText;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: #141414;
+}
+
+.section-title {
+    height: 38px;
+    border-bottom: 0.5px solid hsla(0, 0%, 59.2%, 0.5);
+    border-left: none;
+    border-right: none;
+    background-color: #f6f6f6;
+    display: flex;
+    align-items: center;
+}
+
+.section-title-txt {
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+    font-stretch: normal;
+    color: #141414;
+    margin-left: 24px;
+}
+
+.section-body {
+    max-width: 936px;
+    width: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.body-sub-tit {
+    font-size: 14px;
+    color: #637280;
+}
+
+.body-text-right {
+    text-align: right;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.section-body-field {
+    margin: 18px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-infor-container {
+    width: 100%;
+    font-family: SFProText;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: #141414;
+    font-size: 16px;
+}
+
+.section-body-field .seat-name,
+.section-body-field .seat-id {
+    text-align: left;
+    color: #00613d;
+}
+
+.footer-infor-container {
+    width: 100%;
+    height: 80px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: 0.5px solid #dce1e6;
+    background-color: #f6f6f6;
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.total-infor {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.footer-infor-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #141414;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.footer-infor-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f15a24;
+}
+
+/* Payment Method */
+.payment-method-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: #00613d;
+    margin-bottom: 16px;
+}
+
+.payment-item-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.payment-item-container {
+    width: 296px;
+    padding: 8px;
+}
+
+.payment-item-container > button {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    position: relative;
+}
+
+.border-normal {
+    border: 1px dashed rgba(99, 114, 128, 0.2);
+    background-color: rgba(99, 114, 128, 0.06);
+}
+
+.payment-item-selected {
+    border: 1px dashed #ffa484;
+    background-color: #ffe2d7;
+}
+
+.payment-item-images {
+    height: 40px;
+    margin: 16px 4px 8px;
+    object-fit: cover;
+}
+
+.check {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.payment-item-text {
+    font-size: 15px;
+    line-height: 18px;
+    color: #141414;
+    margin: auto auto 16px;
+}
+
+.booking-summary-buttons {
+    font-family: SFProText;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 700px;
+    margin: 20px auto 40px;
+    flex-wrap: wrap;
+}
+
+.booking-summart-left-button {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 16px;
+}
+
+.booking-summary-back-home-btn {
+    border-radius: 24px;
+    border: 1px solid #c0c6cc;
+    background-color: #fff;
+    color: #111;
+}
+
+.booking-summary-next-order-btn {
+    border-radius: 24px;
+    border: 1px solid #c0c6cc;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.booking-summary-back-home-btn > i,
+.booking-summary-next-order-btn > i {
+    width: 30px;
+    height: 18px;
+    line-height: 20px;
+    font-size: 2.8rem;
+    padding-right: 20px;
+}
+
+.booking-summary-pay-btn {
+    border-radius: 24px;
+    color: #fff;
+    border: none;
+    background-color: #00603d;
+}
+
+.booking-summart-left-button > button,
+.booking-summart-right-button > button {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 48px;
+    white-space: nowrap;
+}
+
+.booking-summart-right-button {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 16px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .payment-item-container {
+        width: 240px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .payment-header-content {
+        width: 35vw;
+    }
+
+    .payment-header-content > h1 {
+        padding-left: 5px;
+    }
+
+    .booking-summary-buttons {
+        width: 100%;
+        padding: 0 16px;
+    }
+    .booking-summary-back-home-btn {
+        padding-right: 12px;
+    }
+    .booking-summart-left-button,
+    .booking-summart-right-button {
+        margin-right: 8px;
+    }
+
+    .booking-summary-back-home-btn > i {
+        padding-right: 0;
+        width: 25px;
+    }
+
+    .body-text-right {
+        text-align: left;
+    }
+
+    .section-title {
+        height: 50px;
+    }
+
+    .section-title-txt {
+        font-size: 15px;
+        margin-left: 18px;
+    }
+}

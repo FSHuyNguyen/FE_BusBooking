@@ -9,6 +9,7 @@ import SearchPage from './pages/SearchPage';
 import SearchConfirmationPage from './pages/SearchConfirmationPage';
 import PaymentPage from './pages/PaymentPage';
 import CustomerInformationPage from './pages/CustomerInformationPage';
+import PaymentSuccessPage from './pages/PaymentSuccessPage';
 
 function App() {
     return (
@@ -51,6 +52,14 @@ function App() {
                     element={
                         <MainLayout>
                             <PaymentPage />
+                        </MainLayout>
+                    }
+                />
+                <Route
+                    path="/payment-success"
+                    element={
+                        <MainLayout>
+                            <PaymentSuccessPage />
                         </MainLayout>
                     }
                 />

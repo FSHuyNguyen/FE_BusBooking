@@ -1,14 +1,37 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import PayMethod from '~/Data/PayMethod';
 import Image from '../Image';
+import SevenTableSeat from '../SevenTableSeat';
 
-const PaymentMethod = () => {
+const PaymentMethod = ({ user_id }) => {
     const [payMethod, setPayMethod] = useState({});
     const handlePayMethod = (event) => setPayMethod({ [event.target.id]: !payMethod[event.target.id] });
     const navigate = useNavigate();
+    const [params, setParams] = useSearchParams();
 
-    const handleVNPayment = () => {};
+    const openInNewTab = (url) => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
+    const handleVNPPayment = () => {
+        const vnpPayment = async () => {
+            try {
+                const res = await axios.post(process.env.REACT_APP_BASE_URL + '/vnpay-payment', {
+                    user_id: user_id,
+                    type_ticket_id: params.get('type_ticket_id'),
+                    seat_id: JSON.stringify(params.get('seat_id').split(',')),
+                });
+                if (res.data.status === 200) {
+                    openInNewTab(res.data.returnData.url);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        vnpPayment();
+    };
 
     return (
         <>
@@ -24,6 +47,8 @@ const PaymentMethod = () => {
                                     className={`${payMethod[pay_item.id] ? 'payment-item-selected' : 'border-normal'}`}
                                 >
                                     <img
+                                        onClick={handlePayMethod}
+                                        id={pay_item.id}
                                         className="check"
                                         alt="checkbox"
                                         src={`${
@@ -57,7 +82,7 @@ const PaymentMethod = () => {
                     </button>
                 </div>
                 <div className="booking-summart-right-button">
-                    <button className="booking-summary-pay-btn" onClick={handleVNPayment}>
+                    <button className="booking-summary-pay-btn" onClick={handleVNPPayment}>
                         <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Pay</font>
                     </button>
                 </div>

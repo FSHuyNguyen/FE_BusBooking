@@ -126,4 +126,8 @@
         width: 70px;
         top: -38px;
     }
+
+    .step-line-container {
+        width: 98%;
+    }
 }

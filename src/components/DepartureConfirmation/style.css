@@ -237,7 +237,6 @@
 @media only screen and (max-width: 600px) {
     .confirmation-container {
         width: 90vw;
-        margin: 0 auto;
     }
 
     .seats {
@@ -250,8 +249,7 @@
     }
 
     .search-confirm-btn {
-        width: 100vw;
-        padding: 0 16px;
+        width: 80vw;
     }
 
     .confirmation-title {

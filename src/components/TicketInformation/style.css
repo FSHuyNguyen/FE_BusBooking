@@ -292,7 +292,7 @@
 
 @media only screen and (max-width: 600px) {
     .payment-header-content {
-        width: 35vw;
+        width: 30vw;
     }
 
     .payment-header-content > h1 {

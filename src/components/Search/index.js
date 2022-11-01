@@ -155,7 +155,7 @@ const Search = () => {
                                     Từ
                                 </label>
                                 <input
-                                    id={inputFrom.id}
+                                    id={(inputFrom.id && inputFrom.id) || '...'}
                                     autoComplete="off"
                                     className="search-input__field"
                                     type="text"
@@ -218,7 +218,7 @@ const Search = () => {
                                     Đến
                                 </label>
                                 <input
-                                    id={inputTo.id}
+                                    id={(inputTo.id && inputTo.id) || ''}
                                     autoComplete="off"
                                     className="search-input__field"
                                     type="text"

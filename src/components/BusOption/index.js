@@ -222,7 +222,7 @@ const BusOption = ({ ListItem, statusApi }) => {
                             <div className="left-btn">
                                 <Link to={'/'} className="back-btn">
                                     <i className="bx bx-chevron-left"></i>
-                                    <span>Quay Lại</span>
+                                    <span>Back</span>
                                 </Link>
                             </div>
                         </div>

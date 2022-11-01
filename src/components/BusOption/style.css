@@ -424,7 +424,6 @@ td {
 
 .info-ticket {
     padding-bottom: 10px;
-    padding-left: 18px;
 }
 
 .arrow-next {
@@ -530,6 +529,11 @@ td {
         padding: 5px 8px;
     }
 
+    .seat-map-content-active {
+        min-width: 0;
+        padding: 0px 14px;
+    }
+
     .desc {
         -webkit-line-clamp: 5;
     }
@@ -553,7 +557,7 @@ td {
 
     .seat-map-table-content {
         gap: 10px;
-        padding-left: 4px;
+        padding-left: 10px;
         margin: 10px 0px;
     }
 
@@ -586,7 +590,7 @@ td {
     }
 
     .seat-map-table-content > ul ~ ul {
-        padding: 0;
+        padding-left: 14px;
     }
 
     .booking-back-btn {
@@ -612,7 +616,6 @@ td {
     }
 
     .btn--large {
-        width: 290px;
-        margin-top: 15px;
+        width: 150px;
     }
 }

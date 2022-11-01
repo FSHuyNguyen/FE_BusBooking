@@ -11,10 +11,6 @@ const PaymentMethod = ({ user_id }) => {
     const navigate = useNavigate();
     const [params, setParams] = useSearchParams();
 
-    const openInNewTab = (url) => {
-        window.open(url, '_blank', 'noopener,noreferrer');
-    };
-
     const handleVNPPayment = () => {
         const vnpPayment = async () => {
             try {
@@ -24,7 +20,7 @@ const PaymentMethod = ({ user_id }) => {
                     seat_id: JSON.stringify(params.get('seat_id').split(',')),
                 });
                 if (res.data.status === 200) {
-                    openInNewTab(res.data.returnData.url);
+                    window.location.href = res.data.returnData.url;
                 }
             } catch (error) {
                 console.log(error);

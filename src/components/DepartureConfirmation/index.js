@@ -11,7 +11,6 @@ import ContentLoader from 'react-content-loader';
 const DepatureConfirmation = ({ TypeTicket }) => {
     const [params, setParams] = useSearchParams();
     const [seat, setSeat] = useState([]);
-    const [openSeat, setOpenSeat] = useState(false);
     const navigate = useNavigate();
     const [pageStatus, setPageStatus] = useState(true);
 
@@ -28,33 +27,6 @@ const DepatureConfirmation = ({ TypeTicket }) => {
             style: 'currency',
             currency: 'VND',
         }).format(value);
-
-    const handleOpenSeat = () => {
-        setOpenSeat(true);
-    };
-
-    const handleCustormerInfor = () => {
-        params.get('name') !== null
-            ? navigate({
-                  pathname: '/customer-information',
-                  search: `?from=${TypeTicket.from}&to=${TypeTicket.to}&date=${params.get('date')}&time=${
-                      TypeTicket.time_start
-                  }&type=${TypeTicket.id}&bus=${TypeTicket.bus_id}&id=${params.get('id')}&name=${params.get(
-                      'name',
-                  )}&status=${pageStatus}`,
-              })
-            : Notify.warning('Vui lòng kiểm tra lại thông tin vé!', {
-                  zindex: `999999`,
-                  useIcon: false,
-                  cssAnimationStyle: 'from-right',
-                  cssAnimationDuration: 600,
-                  distance: '30px',
-                  showOnlyTheLastOne: true,
-                  clickToClose: true,
-                  fontSize: '16px',
-                  timeout: '1000',
-              });
-    };
 
     return (
         <div className="child">
@@ -113,42 +85,14 @@ const DepatureConfirmation = ({ TypeTicket }) => {
                         </div>
                     </div>
                     <div className="divider"></div>
-                    <div className={`${!openSeat ? 'seats' : 'seats-disabled'}`}>
-                        <div className={`${!openSeat ? 'seats-list' : 'seats-list-disabled'}`}>
-                            <span>Ghế đã chọn</span>
-                            <span className="seats-item">{params.get('name')}</span>
-                        </div>
-                        <div
-                            className={`${!openSeat ? 'action-seat' : 'action-seat-disabled'}`}
-                            onClick={handleOpenSeat}
-                        >
-                            <span>Thay đổi ghế</span>
-                            <i className="bx bxs-edit-alt"></i>
-                        </div>
-                    </div>
                     <SeatMapContent
                         dataSeat={seat}
                         TypeTicket={TypeTicket}
                         name={params.get('name') ? params.get('name').split(',') : {}}
-                        openSeat={openSeat}
+                        pageStatus={pageStatus}
                     />
                 </div>
             )}
-
-            <div className="search-confirm-btn">
-                <div className="search-confirm-left-btn">
-                    <Button className="search-confirm-back-btn" onClick={() => navigate(-1)}>
-                        <i className="bx bx-chevron-left"></i>
-                        <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Back</font>
-                    </Button>
-                </div>
-                <div className="search-confirm-right-btn">
-                    <Button className="search-confirm-next-btn" onClick={handleCustormerInfor}>
-                        <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next</font>
-                        <i className="bx bx-chevron-right"></i>
-                    </Button>
-                </div>
-            </div>
         </div>
     );
 };

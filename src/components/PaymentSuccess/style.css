@@ -1,4 +1,4 @@
-.payment-header-container {
+.payment-success-header-container {
     position: relative;
     margin-top: 68px;
     width: 100%;
@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-.payment-header-content {
+.payment-success-header-content {
     position: static;
     display: flex;
     align-items: flex-start;
@@ -18,8 +18,18 @@
     padding: 20px 0;
 }
 
-.payment-header-content > h1 {
+.payment-success-header-content > h1 {
     font-size: 20px;
     font-weight: 600;
     margin: 0 0 8px;
+}
+
+@media only screen and (max-width: 600px) {
+    .payment-success-header-content {
+        width: 100%;
+    }
+
+    .payment-success-header-content {
+        padding: 20px;
+    }
 }

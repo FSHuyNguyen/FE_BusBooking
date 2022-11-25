@@ -1,0 +1,45 @@
+.card-email {
+    margin-bottom: 1.875rem;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    border: 1px solid #eeeeee;
+    border-radius: 1.25rem;
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 10%);
+    height: calc(100% - 30px);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    width: 100%;
+    margin: 0 1rem;
+}
+
+.card-header {
+    border-color: #f5f5f5;
+    position: relative;
+    background: transparent;
+    padding: 1.5rem 1.875rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header:first-child {
+    border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.fs-18 {
+    line-height: 2;
+    font-size: 1.5rem;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.fs-18 p {
+    margin-left: 1rem;
+}

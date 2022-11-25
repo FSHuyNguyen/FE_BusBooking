@@ -1,0 +1,111 @@
+.pages-titles {
+    padding: 0.9375rem 2.5rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    margin: 0 0 1.875rem 0;
+    border: 1px solid #eeeeee;
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 5%);
+}
+
+.pages-titles > h2 {
+    font-weight: 600;
+    color: var(--admin-primary-color);
+}
+
+.table-striped th,
+.table-striped td {
+    border-color: #f5f5f5;
+    padding: 0.9375rem 7.5rem;
+}
+
+.pe-3 {
+    padding-right: 1rem;
+}
+
+.table-striped th:first-child {
+    border-color: #f5f5f5;
+    padding: 0.9375rem 2.5rem;
+}
+
+.table-striped thead th {
+    border-bottom: 0.0625rem solid #eeeeee;
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    white-space: nowrap;
+    font-weight: 500;
+    border-color: #f5f5f5;
+}
+
+.table.table-striped tbody tr:nth-of-type(odd),
+.table.table-hover tr:hover {
+    background-color: #f2f4fa;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #393939;
+}
+
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.py-3 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.media {
+    display: flex;
+    align-items: center;
+}
+
+.media .media-avatar > img {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.media .media-body > h5 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    flex: 1;
+}
+
+.table-striped > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.3rem;
+    border-top: none;
+}
+
+.form-check {
+    display: block;
+    min-height: 1.3125rem;
+    padding-top: 0.8rem;
+}
+.btn-dropdown {
+    width: 40px;
+    padding-top: 0.4rem;
+}
+.btn-dropdown.tp-btn-light.btn-primary {
+    color: var(--admin-primary-color);
+}
+.btn-dropdown.tp-btn-light {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.table-striped > tbody > tr > td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+.dropdown-menu {
+    min-width: 15rem;
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 10%);
+    padding: 0;
+}

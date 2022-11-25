@@ -168,8 +168,8 @@ const TicketInformation = ({ dataOrder }) => {
                         </button>
                     </div>
                     <div className="booking-summart-right-button">
-                        <button className="booking-summary-next-order-btn">
-                            <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next</font>
+                        <button className="booking-summary-next-order-btn" onClick={() => navigate('/')}>
+                            <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next Home</font>
                             <i className="bx bx-chevron-right"></i>
                         </button>
                     </div>

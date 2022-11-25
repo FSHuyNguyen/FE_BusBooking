@@ -22,7 +22,6 @@ const PaymentSuccess = () => {
                 });
                 if (res.data.status === 200) {
                     setDataOrder(res.data.order);
-                    console.log(dataOrder);
                 }
             } catch (error) {
                 console.log(error);
@@ -30,7 +29,6 @@ const PaymentSuccess = () => {
         };
         insert_DB_Order();
     }, []);
-
     return (
         <div className="payment-success-header-container">
             <div className="payment-success-header-content">

@@ -13,6 +13,7 @@ const DepatureConfirmation = ({ TypeTicket }) => {
     const [seat, setSeat] = useState([]);
     const navigate = useNavigate();
     const [pageStatus, setPageStatus] = useState(true);
+    const [openSeat, setOpenSeat] = useState(false);
 
     useEffect(() => {
         const getSeatbyBusId = async () => {
@@ -28,6 +29,30 @@ const DepatureConfirmation = ({ TypeTicket }) => {
             currency: 'VND',
         }).format(value);
 
+    // Chuyển Page Xác nhận thông tin khách hàng
+    const handleCustormerInfor = () => {
+        params.get('name').length > 0
+            ? navigate({
+                  pathname: '/customer-information',
+                  search: `?from=${TypeTicket.from}&to=${TypeTicket.to}&date=${params.get('date')}&time=${
+                      TypeTicket.time_start
+                  }&type=${TypeTicket.id}&bus=${TypeTicket.bus_id}&id=${params.get('id')}&name=${params.get(
+                      'name',
+                  )}&status=${pageStatus}`,
+              })
+            : Notify.warning('Vui lòng kiểm tra lại thông tin vé!', {
+                  zindex: `999999`,
+                  useIcon: false,
+                  cssAnimationStyle: 'from-right',
+                  cssAnimationDuration: 600,
+                  distance: '30px',
+                  showOnlyTheLastOne: true,
+                  clickToClose: true,
+                  fontSize: '16px',
+                  timeout: '1000',
+              });
+    };
+    console.log(openSeat);
     return (
         <div className="child">
             {Object.keys(TypeTicket).length === 0 ? (
@@ -90,7 +115,25 @@ const DepatureConfirmation = ({ TypeTicket }) => {
                         TypeTicket={TypeTicket}
                         name={params.get('name') ? params.get('name').split(',') : {}}
                         pageStatus={pageStatus}
+                        openSeat={openSeat}
+                        setOpenSeat={setOpenSeat}
                     />
+                </div>
+            )}
+            {!openSeat && (
+                <div className="search-confirm-btn">
+                    <div className="search-confirm-left-btn">
+                        <Button className="search-confirm-back-btn" onClick={() => navigate(-1)}>
+                            <i className="bx bx-chevron-left"></i>
+                            <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Back</font>
+                        </Button>
+                    </div>
+                    <div className="search-confirm-right-btn">
+                        <Button className="search-confirm-next-btn" onClick={handleCustormerInfor}>
+                            <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next</font>
+                            <i className="bx bx-chevron-right"></i>
+                        </Button>
+                    </div>
                 </div>
             )}
         </div>

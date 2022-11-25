@@ -1,0 +1,19 @@
+.dlabnav {
+    width: 20.5rem;
+    padding-bottom: 0;
+    height: calc(100% - 7.5rem);
+    position: fixed;
+    top: 7.5rem;
+    padding-top: 0;
+    z-index: 6;
+    background-color: var(--sidebar-bg);
+    transition: all 0.2s ease;
+    box-shadow: 0rem 0.9375rem 1.875rem 0rem rgb(0 0 0 / 2%);
+}
+
+.dlabnav .dlabnav-scroll {
+    position: relative;
+    height: 100%;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+}

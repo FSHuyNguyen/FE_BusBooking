@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authSelector } from '~/redux/selector';
 import authSlice from '../Auth/authSlice';
 
-const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus }) => {
+const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus, openSeat, setOpenSeat }) => {
     const [changeTang, setchangeTang] = useState(true);
     const [chooseSeat, setChooseSeat] = useState({});
     const [params, setParams] = useSearchParams();
@@ -15,7 +15,6 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus }) => {
     const navigate = useNavigate();
     const authState = useSelector(authSelector);
     const dispatch = useDispatch();
-    const [openSeat, setOpenSeat] = useState(false);
     const handleOpenSeat = () => {
         setOpenSeat(true);
     };
@@ -102,7 +101,6 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus }) => {
             dispatch(authSlice.actions.modalToggle(true));
         }
     };
-
     const handleCustormerInfor = () => {
         updateParams && Object.keys(chooseSeat).length > 0
             ? navigate({
@@ -140,6 +138,7 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus }) => {
         }
         setChooseSeat(obj1);
         setGetSeatID(obj2);
+        setUpdateParams(true);
     }, [dataSeat]);
 
     return (
@@ -394,7 +393,7 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus }) => {
                         </div>
                     </div>
                     <div
-                        className={`{seat-map-content ${
+                        className={`seat-map-content ${
                             openSeat ? 'seat-map-content-active' : 'seat-map-content-disabled'
                         }`}
                     >
@@ -596,28 +595,28 @@ const SeatMapContent = ({ dataSeat, props, name, TypeTicket, pageStatus }) => {
                                     )}
                                 </div>
                             </div>
-                            {(typeof name !== 'object' && (
-                                <Button buttonSize={'btn--large'} onClick={handleNextSearchConfirm}>
-                                    <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>Next</font>
-                                    <i className="arrow-next bx bx-chevron-right"></i>
-                                </Button>
-                            )) || (
-                                <div className="search-confirm-btn">
-                                    <div className="search-confirm-left-btn">
-                                        <Button className="search-confirm-back-btn" onClick={() => navigate(-1)}>
-                                            <i className="bx bx-chevron-left"></i>
-                                            <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Back</font>
-                                        </Button>
-                                    </div>
-                                    <div className="search-confirm-right-btn">
-                                        <Button className="search-confirm-next-btn" onClick={handleCustormerInfor}>
-                                            <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next</font>
-                                            <i className="bx bx-chevron-right"></i>
-                                        </Button>
-                                    </div>
-                                </div>
-                            )}
                         </div>
+                        {(typeof name !== 'object' && (
+                            <Button buttonSize={'btn--large'} onClick={handleNextSearchConfirm}>
+                                <font style={{ verticalAlign: 'inherit', fontSize: '18px' }}>Next</font>
+                                <i className="arrow-next bx bx-chevron-right"></i>
+                            </Button>
+                        )) || (
+                            <div className="search-confirm-btn">
+                                <div className="search-confirm-left-btn">
+                                    <Button className="search-confirm-back-btn" onClick={() => navigate(-1)}>
+                                        <i className="bx bx-chevron-left"></i>
+                                        <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Back</font>
+                                    </Button>
+                                </div>
+                                <div className="search-confirm-right-btn">
+                                    <Button className="search-confirm-next-btn" onClick={handleCustormerInfor}>
+                                        <font style={{ verticalAlign: 'inherit', fontSize: '20px' }}>Next</font>
+                                        <i className="bx bx-chevron-right"></i>
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </>
             )}

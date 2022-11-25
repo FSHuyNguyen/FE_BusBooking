@@ -1,0 +1,110 @@
+.card-header:first-child {
+    border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0;
+}
+
+.card-header {
+    position: relative;
+    background: transparent;
+    padding: 1.5rem 1.875rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-width: 0;
+}
+
+.font-w700 {
+    font-weight: 700;
+}
+
+.fs-20 {
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.project-tab .card-tabs .nav-tabs {
+    border: 0;
+    background: rgba(136, 108, 192, 0.1);
+    border-radius: 3.125rem;
+    color: #717579;
+    font-size: 1.6rem;
+    font-weight: 400;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.project-tab .card-tabs .nav-tabs .nav-link {
+    border: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    background: none;
+    padding: 0.938rem 1.563rem;
+    border-radius: 1.25rem;
+    margin-bottom: -1px;
+}
+
+.project-tab .card-tabs .nav-tabs .nav-link.active {
+    border: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #fff;
+    padding: 0.938rem 1.563rem;
+    border-radius: 1.25rem;
+    margin-bottom: -1px;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.ms-3 {
+    margin-left: 1rem;
+}
+
+.fs-24 {
+    font-size: 2.4rem;
+    line-height: 1.6;
+}
+
+.font-w400 {
+    font-weight: 400;
+}
+
+.fs-16 {
+    font-size: 1.4rem;
+    line-height: 1.6;
+}
+
+.me-5 {
+    margin-right: 3rem;
+}
+
+.fade {
+    transition: opacity 0.15s linear;
+}
+
+.tab-content .active {
+    display: block;
+    fill: transparent;
+    stroke: transparent;
+}
+
+.apexcharts-canvas {
+    position: relative;
+    user-select: none;
+}

@@ -167,7 +167,6 @@ table {
     font-size: 15px;
     font-weight: 500;
     color: #4a4a4a;
-    border-bottom: 1px solid #ebedee;
 }
 
 .sub-title-time,
@@ -303,12 +302,11 @@ table {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
-    border-top: 1px solid #ddd;
 }
 
 td {
-    border: none !important;
-    padding: 6px !important;
+    border: none;
+    padding: 6px;
 }
 
 .seat {
@@ -416,6 +414,7 @@ td {
     margin-top: 30px;
     font-size: 15px;
     color: #4a4a4a;
+    padding: 0 20px;
 }
 
 .footer-seat-map > div {

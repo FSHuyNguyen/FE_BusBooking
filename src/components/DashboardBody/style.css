@@ -1,0 +1,294 @@
+.content-body {
+    transition: all 0.2s ease;
+    min-height: 788px;
+    margin-left: 20rem;
+    z-index: 0;
+    padding-top: 7.5rem;
+}
+
+.container-fluid {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2.5rem;
+}
+
+.tryal-gradient {
+    background: #886cc0;
+    position: relative;
+}
+
+.card {
+    margin-bottom: 1.875rem;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    border: 1px solid #eeeeee;
+    border-radius: 1.25rem;
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 10%);
+    height: calc(100% - 30px);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+}
+
+.tryal {
+    padding: 3rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.875rem;
+}
+
+.px-4 {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.pb-0 {
+    padding-bottom: 0px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.tryal h2,
+.tryal .h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    line-height: 2.4rem;
+}
+
+.tryal span {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #fff;
+    display: block;
+    margin: 1.875rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.sd-shape {
+    animation: movedelement 10s linear infinite;
+    width: 100%;
+    transform: scale(1.1);
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes movedelement {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(10px, 10px);
+    }
+    50% {
+        transform: translate(5px, 5px);
+    }
+    75% {
+        transform: translate(10px, -5px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.content-body-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tryal-gradient:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.52) 100%);
+    border-radius: 1.25rem;
+}
+
+.justify-content {
+    justify-content: space-evenly;
+}
+
+.card-body div > h3 {
+    white-space: nowrap;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.d-flex > h2 {
+    font-weight: 800;
+    line-height: 1.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 0;
+}
+
+.d-block {
+    display: block;
+}
+
+.ms-4 {
+    margin-left: 1.5rem;
+}
+
+.fs-16 {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.font-w400 {
+    font-weight: 400;
+}
+
+.text-success {
+    color: rgb(9, 189, 60);
+}
+
+.apexcharts-canvas {
+    position: relative;
+    user-select: none;
+}
+
+.apexcharts-tooltip {
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px -4px #999;
+    cursor: default;
+    font-size: 14px;
+    left: 62px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 12;
+    transition: 0.15s ease all;
+}
+
+.resize-triggers {
+    animation: 1ms resizeanim;
+    visibility: hidden;
+    opacity: 0;
+}
+
+@keyframes resizeanim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.resize-triggers,
+.resize-triggers > div,
+.contract-trigger:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.resize-triggers > div {
+    background: #eee;
+    overflow: auto;
+}
+
+.contract-trigger:before {
+    width: 200%;
+    height: 200%;
+}
+
+.fs-18 {
+    line-height: 1.5;
+    font-size: 1.125rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+.font-w600 {
+    font-weight: 600;
+}
+
+.progress {
+    display: flex;
+    height: 1rem;
+    font-size: 1rem;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background-color: rgb(246, 246, 246);
+}
+
+.progress-bar {
+    background-color: #886cc0;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.progress-animated {
+    animation-duration: 1s;
+    animation-name: myanimation;
+    transition: all 1s ease 0s;
+}
+
+@keyframes myanimation {
+    0% {
+        width: 0px;
+    }
+}
+
+.sr-only {
+    border: 0;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+.align-items-end {
+    align-items: flex-end;
+}
+
+.pb-3 {
+    padding-bottom: 1rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.total-clients {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

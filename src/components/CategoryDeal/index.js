@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '~/components/CategoryDeal/style.css';
 import ContentLoader from 'react-content-loader';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const CategoryDeal = () => {
     const [dataDeal, setDataDeal] = useState([]);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchApiDeal = async () => {
             const res = await axios.get(process.env.REACT_APP_BASE_URL + '/typeticket', {
@@ -24,6 +27,25 @@ const CategoryDeal = () => {
             style: 'currency',
             currency: 'VND',
         }).format(value);
+
+    const dateStart = new Date().toLocaleDateString();
+    const handleDealItem = (item, index) => {
+        item
+            ? navigate({
+                  pathname: '/search',
+                  search: `?from=${item.from}&idfrom=${item.from_id}&to=${item.to}&idto=${item.to_id}&date=${dateStart}`,
+              })
+            : Notify.warning('Vui lòng nhập điểm đi và điểm đến!', {
+                  zindex: `999999`,
+                  useIcon: false,
+                  cssAnimationStyle: 'from-right',
+                  cssAnimationDuration: 600,
+                  distance: '30px',
+                  showOnlyTheLastOne: true,
+                  clickToClose: true,
+                  fontSize: '16px',
+              });
+    };
 
     return (
         <div className="category-deal container">
@@ -79,8 +101,13 @@ const CategoryDeal = () => {
                                 </ContentLoader>
                             </>
                         )) ||
-                            dataDeal.map((item) => (
-                                <div className="deal-item" key={item.id}>
+                            dataDeal.map((item, index) => (
+                                <div
+                                    className="deal-item"
+                                    key={item.id}
+                                    id={index}
+                                    onClick={() => handleDealItem(item, index)}
+                                >
                                     <Link to="/" className="deal-items">
                                         <div className="deal-item_brand">
                                             <img

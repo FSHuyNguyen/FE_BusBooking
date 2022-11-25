@@ -1,18 +1,23 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import images from '~/assets/img';
 import Button from '../../Button';
 import Image from '../../Image';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../authSlice';
+import { loginUser, loginUserByGoogle } from '../authSlice';
 import { authSelector } from '~/redux/selector';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Loading } from 'notiflix';
 
 const Login = ({ onChangeForm, onClose, onForgot }) => {
     const dispatch = useDispatch();
     const authState = useSelector(authSelector);
     const [showPassword, setShowPassword] = useState(false);
     const [onForgotPassword, setOnForgotPassword] = useState(false);
+    const [loginUrl, setLoginUrl] = useState(null);
+    const [openGoogle, setOpenGoogle] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -35,6 +40,23 @@ const Login = ({ onChangeForm, onClose, onForgot }) => {
     const handleForgotPassword = () => {
         onForgot(true);
     };
+
+    useEffect(() => {
+        const loginByGoogle = async () => {
+            try {
+                const res = await axios.get(process.env.REACT_APP_BASE_URL + '/get-google-sign-in-url');
+                if (res.data.status === 200) {
+                    window.location.href = res.data.url;
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (openGoogle) {
+            loginByGoogle();
+        }
+    }, [openGoogle]);
 
     return (
         <div className={`form_modal login`}>
@@ -135,7 +157,7 @@ const Login = ({ onChangeForm, onClose, onForgot }) => {
             </div>
 
             <div className="media-options">
-                <Button className="field google">
+                <Button className="field google" onClick={() => setOpenGoogle(!openGoogle)}>
                     <Image src={images.google} className="google-img"></Image>
                     <span className="field-title">Đăng nhập bằng Google</span>
                 </Button>

@@ -27,7 +27,6 @@ const Auth = ({ authOpen, onClose }) => {
             dispatch(authSlice.actions.removeNotify());
         }
     };
-
     const renderForm = () => {
         if (forgot && authOpen) return <ForgotPassword onClose={handleClose} />;
         else if (changeForm && authOpen)

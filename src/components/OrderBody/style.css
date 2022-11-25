@@ -1,0 +1,20 @@
+.badge {
+    line-height: 1.5;
+    border-radius: 1.03125rem;
+    padding: 0.25rem 0.625rem;
+    border: 0.0625rem solid transparent;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    font-size: 1.3rem;
+}
+
+.badge-success {
+    background-color: #09bd3c;
+}
+
+.badge-warning {
+    background-color: #ffcf6d;
+}

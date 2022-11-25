@@ -1,12 +1,12 @@
 import { Loading } from 'notiflix';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import images from '~/assets/img';
 import Button from '~/components/Button';
 import { authSelector } from '~/redux/selector';
 import Auth from '../Auth';
-import authSlice, { getUser } from '../Auth/authSlice';
+import authSlice, { getUser, loginUserByGoogle } from '../Auth/authSlice';
 import Image from '../Image';
 import User from '../User';
 import '~/components/Header/style.css';
@@ -22,6 +22,9 @@ const Header = ({}) => {
     const [openMenu, setOpenMenu] = useState(false);
     const [openNotify, setOpenNotify] = useState(false);
     const handleClose = () => dispatch(authSlice.actions.modalToggle(false));
+    const [data, setData] = useState({});
+    const [user, setUser] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         dispatch(getUser());
@@ -37,6 +40,10 @@ const Header = ({}) => {
     const handleOpenNotify = () => {
         setOpenNotify(!openNotify);
     };
+
+    useEffect(() => {
+        dispatch(loginUserByGoogle(location.search));
+    }, []);
 
     return (
         <>

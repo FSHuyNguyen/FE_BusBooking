@@ -1,0 +1,5 @@
+.table-striped > tbody > tr > td input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}

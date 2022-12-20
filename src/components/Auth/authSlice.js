@@ -117,6 +117,19 @@ const authSlice = createSlice({
                         break;
                     default:
                 }
+            })
+            .addCase(loginUserByFacebook.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(loginUserByFacebook.fulfilled, (state, action) => {
+                state.loading = false;
+                switch (action.payload.status) {
+                    case 200:
+                        state.isAuthenticated = true;
+                        state.user = action.payload.user;
+                        break;
+                    default:
+                }
             });
     },
 });
@@ -212,9 +225,13 @@ const logout = createAsyncThunk('auth/logout', async () => {
 });
 
 const loginUserByGoogle = createAsyncThunk('auth/login-by-google', async (location) => {
+    if (!location)
+        return {
+            status: 401,
+            msg: 'No location',
+        };
     try {
         const res = await axios.get(process.env.REACT_APP_BASE_URL + `/callback${location}`);
-        console.log(res.data);
         if (res.data.status === 200) {
             localStorage.setItem('TOKEN', res.data.token);
         }
@@ -224,5 +241,17 @@ const loginUserByGoogle = createAsyncThunk('auth/login-by-google', async (locati
     }
 });
 
-export { registerUser, getUser, loginUser, logout, loginUserByGoogle };
+const loginUserByFacebook = createAsyncThunk('auth/login-by-facebook', async (location) => {
+    try {
+        const res = await axios.get(process.env.REACT_APP_BASE_URL + `/auth/facebook/callback${location}`);
+        if (res.data.status === 200) {
+            localStorage.setItem('TOKEN', res.data.token);
+        }
+        return res.data;
+    } catch (error) {
+        return error.response.data;
+    }
+});
+
+export { registerUser, getUser, loginUser, logout, loginUserByGoogle, loginUserByFacebook };
 export default authSlice;

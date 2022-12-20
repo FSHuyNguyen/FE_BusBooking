@@ -29,6 +29,7 @@ const PaymentSuccess = () => {
         };
         insert_DB_Order();
     }, []);
+
     return (
         <div className="payment-success-header-container">
             <div className="payment-success-header-content">

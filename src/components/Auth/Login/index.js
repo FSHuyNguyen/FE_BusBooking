@@ -18,6 +18,7 @@ const Login = ({ onChangeForm, onClose, onForgot }) => {
     const [onForgotPassword, setOnForgotPassword] = useState(false);
     const [loginUrl, setLoginUrl] = useState(null);
     const [openGoogle, setOpenGoogle] = useState(false);
+    const [openFacebook, setOpenFacebook] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -42,6 +43,7 @@ const Login = ({ onChangeForm, onClose, onForgot }) => {
     };
 
     useEffect(() => {
+        if (!openGoogle) return;
         const loginByGoogle = async () => {
             try {
                 const res = await axios.get(process.env.REACT_APP_BASE_URL + '/get-google-sign-in-url');
@@ -53,10 +55,23 @@ const Login = ({ onChangeForm, onClose, onForgot }) => {
             }
         };
 
-        if (openGoogle) {
-            loginByGoogle();
-        }
+        loginByGoogle();
     }, [openGoogle]);
+
+    useEffect(() => {
+        if (!openFacebook) return;
+        const loginbyFacebook = async () => {
+            try {
+                const res = await axios.get(process.env.REACT_APP_BASE_URL + '/get-facebook-sign-in-url');
+                if (res.data.status === 200) {
+                    window.location.href = res.data.url;
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        loginbyFacebook();
+    }, [openFacebook]);
 
     return (
         <div className={`form_modal login`}>
@@ -150,7 +165,7 @@ const Login = ({ onChangeForm, onClose, onForgot }) => {
             <div className="line"></div>
 
             <div className="media-options">
-                <Button className="field facebook">
+                <Button className="field facebook" onClick={() => setOpenFacebook(!openFacebook)}>
                     <i className="bx bxl-facebook-circle facebook-icon"></i>
                     <span className="field-title">Đăng nhập bằng Facebook</span>
                 </Button>

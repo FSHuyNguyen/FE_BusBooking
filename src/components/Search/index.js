@@ -98,6 +98,7 @@ const Search = () => {
                   fontSize: '16px',
               });
     };
+
     return (
         <div className="search__middle">
             <div className="roundtrip-checkbox-container">

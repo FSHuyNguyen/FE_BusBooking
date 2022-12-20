@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { authAdminSelector } from '~/redux/selector';
 import authAdminSlice, { loginAdmin } from './authAdminSlice';
 import { Loading } from 'notiflix';
-import Notify from '../Notify';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const AuthAdmin = () => {
     const dispatch = useDispatch();
@@ -19,7 +19,26 @@ const AuthAdmin = () => {
         authAdminState.loading
             ? Loading.pulse({ zindex: 999999, svgColor: 'var(--admin-primary-color)' })
             : Loading.remove(500);
-        authAdminState.isAuthenticated ? navigate('/admin-dashboard') : navigate('/auth-admin');
+        if (authAdminState.isAuthenticated) {
+            if (authAdminState.admin.role === '1') {
+                navigate('/admin-dashboard');
+            }
+            if (authAdminState.admin.role === '0') {
+                navigate('/auth-admin');
+                Notify.failure('Bạn không có quyền truy cập tài nguyên này!', {
+                    zindex: `999999`,
+                    useIcon: false,
+                    cssAnimationStyle: 'from-right',
+                    cssAnimationDuration: 500,
+                    distance: '30px',
+                    showOnlyTheLastOne: true,
+                    clickToClose: true,
+                    fontSize: '16px',
+                });
+            }
+        } else {
+            navigate('/auth-admin');
+        }
     }, [authAdminState.isAuthenticated, authAdminState.loading]);
 
     const formik = useFormik({

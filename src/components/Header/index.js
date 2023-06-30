@@ -15,7 +15,7 @@ import { disabledScroll, enabledScroll } from '~/utils/scrollBody';
 import Notify from '../Notify';
 import Skeleton from 'react-loading-skeleton';
 
-const Header = ({}) => {
+const Header = () => {
     const { modalToggle } = useSelector(authSelector);
     const dispatch = useDispatch();
     const authState = useSelector(authSelector);
